@@ -1,8 +1,8 @@
 const CACHE_NAME =
-    "deadline-buddy-v3";
+    "deadline-buddy-final-v1";
 
 
-const STATIC_FILES = [
+const FILES_TO_CACHE = [
 
     "./",
 
@@ -32,7 +32,7 @@ self.addEventListener(
                 .then(
                     cache =>
                         cache.addAll(
-                            STATIC_FILES
+                            FILES_TO_CACHE
                         )
                 )
 
@@ -106,8 +106,9 @@ self.addEventListener(
 
 
         /*
-         * For normal page navigation:
-         * try network first.
+         * HTML navigation:
+         * network first,
+         * cache fallback.
          */
 
         if (
@@ -162,7 +163,7 @@ self.addEventListener(
 
 
         /*
-         * Static files:
+         * Other files:
          * cache first.
          */
 
@@ -199,7 +200,7 @@ self.addEventListener(
 
 
 /* =========================================
-   PUSH NOTIFICATION
+   PUSH NOTIFICATIONS
 ========================================= */
 
 self.addEventListener(
@@ -313,7 +314,6 @@ self.addEventListener(
                             const client
                             of clientList
                         ) {
-
 
                             if (
                                 "focus"
