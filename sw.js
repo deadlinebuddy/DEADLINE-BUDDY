@@ -1,5 +1,5 @@
 const CACHE_NAME =
-    "deadline-buddy-v2";
+    "deadline-buddy-v3";
 
 
 const STATIC_FILES = [
@@ -94,9 +94,6 @@ self.addEventListener(
     "fetch",
     event => {
 
-        /*
-         * Only handle GET requests.
-         */
 
         if (
             event.request.method !==
@@ -108,27 +105,20 @@ self.addEventListener(
         }
 
 
-        const request =
-            event.request;
-
-
         /*
-         * HTML:
-         * Network first, then cache.
-         *
-         * This allows GitHub Pages
-         * to deliver updated versions.
+         * For normal page navigation:
+         * try network first.
          */
 
         if (
-            request.mode ===
+            event.request.mode ===
             "navigate"
         ) {
 
             event.respondWith(
 
                 fetch(
-                    request
+                    event.request
                 )
 
                 .then(
@@ -145,7 +135,7 @@ self.addEventListener(
                             .then(
                                 cache =>
                                     cache.put(
-                                        request,
+                                        event.request,
                                         copy
                                     )
                             );
@@ -159,7 +149,7 @@ self.addEventListener(
                 .catch(
                     () =>
                         caches.match(
-                            request
+                            event.request
                         )
                 )
 
@@ -173,14 +163,14 @@ self.addEventListener(
 
         /*
          * Static files:
-         * Cache first, network fallback.
+         * cache first.
          */
 
         event.respondWith(
 
             caches
                 .match(
-                    request
+                    event.request
                 )
 
                 .then(
@@ -196,7 +186,7 @@ self.addEventListener(
 
 
                         return fetch(
-                            request
+                            event.request
                         );
 
                     }
@@ -209,12 +199,13 @@ self.addEventListener(
 
 
 /* =========================================
-   PUSH NOTIFICATIONS
+   PUSH NOTIFICATION
 ========================================= */
 
 self.addEventListener(
     "push",
     event => {
+
 
         let data = {
 
@@ -222,14 +213,13 @@ self.addEventListener(
                 "Deadline Buddy 🔔",
 
             message:
-                "You have a new deadline reminder."
+                "You have a new deadline reminder.",
+
+            tag:
+                "deadline-buddy-reminder"
 
         };
 
-
-        /*
-         * Read push data when available.
-         */
 
         if (
             event.data
@@ -259,7 +249,6 @@ self.addEventListener(
             self.registration
                 .showNotification(
                     data.title,
-
                     {
 
                         body:
@@ -272,8 +261,7 @@ self.addEventListener(
                             "./icon.svg",
 
                         tag:
-                            data.tag ||
-                            "deadline-buddy-reminder",
+                            data.tag,
 
                         renotify:
                             true,
@@ -298,6 +286,7 @@ self.addEventListener(
     "notificationclick",
     event => {
 
+
         event.notification.close();
 
 
@@ -306,21 +295,25 @@ self.addEventListener(
             clients
                 .matchAll(
                     {
+
                         type:
                             "window",
 
                         includeUncontrolled:
                             true
+
                     }
                 )
 
                 .then(
                     clientList => {
 
+
                         for (
                             const client
                             of clientList
                         ) {
+
 
                             if (
                                 "focus"
