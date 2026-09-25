@@ -17,10 +17,11 @@
 
     <meta
         name="description"
-        content="Deadline Buddy helps students organize school tasks, deadlines, and reminders."
+        content="Deadline Buddy helps students manage tasks, deadlines, and reminders."
     >
 
-    <!-- iOS -->
+    <!-- iOS WEB APP -->
+
     <meta
         name="apple-mobile-web-app-capable"
         content="yes"
@@ -36,10 +37,14 @@
         content="Deadline Buddy"
     >
 
+    <!-- PWA MANIFEST -->
+
     <link
         rel="manifest"
         href="manifest.json"
     >
+
+    <!-- ICON -->
 
     <link
         rel="icon"
@@ -52,7 +57,9 @@
         href="icon.svg"
     >
 
-    <title>Deadline Buddy</title>
+    <title>
+        Deadline Buddy
+    </title>
 
 
     <style>
@@ -77,49 +84,82 @@
 
         nav {
             background: white;
+
             padding: 15px 8%;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
+            gap: 20px;
+
             box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.08);
+                0 2px 10px rgba(0,0,0,0.08);
 
             position: sticky;
+
             top: 0;
+
             z-index: 1000;
         }
 
 
         .logo {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
 
             font-size: 24px;
+
             font-weight: bold;
+
             color: #5b4bdb;
+
+            white-space: nowrap;
         }
 
 
-        .logo img {
+        .logo-icon {
             width: 40px;
+
             height: 40px;
+
             border-radius: 10px;
+
+            background: #5b4bdb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 24px;
+
+            font-weight: bold;
         }
 
 
         .nav-links {
             display: flex;
+
             align-items: center;
-            gap: 22px;
+
+            gap: 20px;
         }
 
 
         .nav-links a {
             text-decoration: none;
+
             color: #333;
+
             font-weight: 500;
         }
 
@@ -135,7 +175,9 @@
 
         .btn {
             border: none;
+
             background: #5b4bdb;
+
             color: white;
 
             padding: 13px 20px;
@@ -157,7 +199,9 @@
 
         .install-btn {
             border: none;
+
             background: #5b4bdb;
+
             color: white;
 
             padding: 10px 15px;
@@ -167,6 +211,8 @@
             cursor: pointer;
 
             font-weight: bold;
+
+            white-space: nowrap;
         }
 
 
@@ -177,6 +223,7 @@
 
         .install-btn.installed {
             background: #218739;
+
             cursor: default;
         }
 
@@ -243,12 +290,14 @@
 
         .section-title h2 {
             font-size: 32px;
+
             color: #29234f;
         }
 
 
         .section-title p {
             color: #777;
+
             margin-top: 8px;
         }
 
@@ -277,7 +326,7 @@
             border-radius: 15px;
 
             box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
+                0 5px 20px rgba(0,0,0,0.06);
         }
 
 
@@ -309,7 +358,7 @@
             border-radius: 15px;
 
             box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
+                0 5px 20px rgba(0,0,0,0.06);
 
             margin-bottom: 40px;
         }
@@ -326,6 +375,8 @@
             color: #777;
 
             margin-bottom: 20px;
+
+            line-height: 1.5;
         }
 
 
@@ -360,6 +411,8 @@
             outline: none;
 
             background: white;
+
+            font-size: 14px;
         }
 
 
@@ -404,7 +457,7 @@
             border-radius: 15px;
 
             box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
+                0 5px 20px rgba(0,0,0,0.06);
 
             border-left:
                 5px solid #5b4bdb;
@@ -441,12 +494,14 @@
 
         .notification-status.enabled {
             background: #dff6e5;
+
             color: #218739;
         }
 
 
         .notification-status.blocked {
             background: #ffe1e1;
+
             color: #d33;
         }
 
@@ -456,6 +511,8 @@
 
             border-bottom:
                 1px solid #eee;
+
+            line-height: 1.5;
         }
 
 
@@ -505,7 +562,7 @@
 
 
         /* =========================
-           TASK LIST
+           TASKS
         ========================= */
 
         .tasks {
@@ -530,8 +587,15 @@
 
             align-items: center;
 
+            gap: 20px;
+
             box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.05);
+                0 4px 15px rgba(0,0,0,0.05);
+        }
+
+
+        .task-info {
+            flex: 1;
         }
 
 
@@ -549,6 +613,8 @@
 
         .task-right {
             text-align: right;
+
+            min-width: 220px;
         }
 
 
@@ -557,7 +623,9 @@
 
             color: #5b4bdb;
 
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+
+            line-height: 1.5;
         }
 
 
@@ -571,6 +639,11 @@
         }
 
 
+        .task-buttons {
+            margin-top: 10px;
+        }
+
+
         .task-buttons button {
             border: none;
 
@@ -581,6 +654,8 @@
             cursor: pointer;
 
             margin-left: 5px;
+
+            font-weight: bold;
         }
 
 
@@ -629,7 +704,7 @@
             z-index: 3000;
 
             background:
-                rgba(0, 0, 0, 0.55);
+                rgba(0,0,0,0.55);
 
             align-items: center;
 
@@ -658,7 +733,7 @@
             text-align: center;
 
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.25);
+                0 20px 60px rgba(0,0,0,0.25);
         }
 
 
@@ -669,7 +744,21 @@
 
             border-radius: 18px;
 
-            margin-bottom: 15px;
+            background: #5b4bdb;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            font-size: 42px;
+
+            font-weight: bold;
         }
 
 
@@ -758,7 +847,7 @@
 
 
         /* =========================
-           MOBILE
+           RESPONSIVE
         ========================= */
 
         @media (max-width: 1100px) {
@@ -779,6 +868,9 @@
                 flex-direction: column;
 
                 gap: 15px;
+
+                padding:
+                    15px 5%;
             }
 
 
@@ -786,11 +878,28 @@
                 flex-wrap: wrap;
 
                 justify-content: center;
+
+                gap: 14px;
+            }
+
+
+            .hero {
+                padding: 70px 5%;
             }
 
 
             .hero h1 {
                 font-size: 40px;
+            }
+
+
+            .hero p {
+                font-size: 17px;
+            }
+
+
+            .dashboard {
+                padding: 50px 5%;
             }
 
 
@@ -810,13 +919,22 @@
                 flex-direction: column;
 
                 align-items: flex-start;
-
-                gap: 15px;
             }
 
 
             .task-right {
                 text-align: left;
+
+                min-width: 0;
+
+                width: 100%;
+            }
+
+
+            .task-buttons button {
+                margin-left: 0;
+
+                margin-right: 5px;
             }
 
         }
@@ -830,17 +948,17 @@
 
 
 <!-- =========================
-     NAVBAR
+     NAVIGATION
 ========================= -->
 
 <nav>
 
+
     <div class="logo">
 
-        <img
-            src="icon.svg"
-            alt="Deadline Buddy"
-        >
+        <div class="logo-icon">
+            ✓
+        </div>
 
         Deadline Buddy
 
@@ -853,9 +971,11 @@
             Home
         </a>
 
+
         <a href="#dashboard">
             Dashboard
         </a>
+
 
         <a href="#tasks">
             My Tasks
@@ -865,12 +985,14 @@
         <button
             id="installButton"
             class="install-btn"
+            type="button"
             onclick="installApp()"
         >
             📲 Install App
         </button>
 
     </div>
+
 
 </nav>
 
@@ -884,23 +1006,33 @@
     id="home"
 >
 
+
     <div class="hero-content">
 
+
         <h1>
+
             Never Miss a
-            <span>Deadline.</span>
+
+            <span>
+                Deadline.
+            </span>
+
         </h1>
 
 
         <p>
 
-            Students have assignments, exams, projects,
-            requirements, and personal responsibilities
-            happening at the same time.
+            Students have assignments, exams,
+            projects, requirements, and personal
+            responsibilities happening at the same time.
 
             <br><br>
 
-            <strong>Deadline Buddy</strong>
+            <strong>
+                Deadline Buddy
+            </strong>
+
             helps you organize everything in one place
             so you can stay on track, reduce stress,
             and get your schoolwork done on time.
@@ -910,13 +1042,18 @@
 
         <a href="#dashboard">
 
-            <button class="btn">
+            <button
+                class="btn"
+                type="button"
+            >
                 Get Started
             </button>
 
         </a>
 
+
     </div>
+
 
 </section>
 
@@ -929,6 +1066,7 @@
     class="dashboard"
     id="dashboard"
 >
+
 
     <div class="section-title">
 
@@ -990,9 +1128,12 @@
     </div>
 
 
-    <!-- ADD TASK -->
+    <!-- =========================
+         ADD TASK
+    ========================= -->
 
     <div class="add-task">
+
 
         <h2>
             ➕ Add a New Task
@@ -1000,19 +1141,24 @@
 
 
         <p>
-            Enter your task, deadline, and the exact time you want to get reminded.
+            Set the deadline and choose exactly when you want to get reminded.
         </p>
 
 
         <div class="form-grid">
 
 
+            <!-- TASK NAME -->
+
             <input
                 type="text"
                 id="taskName"
                 placeholder="Task name"
+                maxlength="150"
             >
 
+
+            <!-- TASK TYPE -->
 
             <select
                 id="taskType"
@@ -1041,12 +1187,16 @@
             </select>
 
 
+            <!-- DEADLINE DATE -->
+
             <input
                 type="date"
                 id="taskDate"
                 title="Deadline date"
             >
 
+
+            <!-- DEADLINE TIME -->
 
             <input
                 type="time"
@@ -1055,7 +1205,10 @@
             >
 
 
+            <!-- REMINDER TIME -->
+
             <div class="reminder-input">
+
 
                 <label
                     for="reminderTime"
@@ -1069,11 +1222,15 @@
                     id="reminderTime"
                 >
 
+
             </div>
 
 
+            <!-- ADD BUTTON -->
+
             <button
                 class="btn"
+                type="button"
                 onclick="addTask()"
             >
                 Add Task
@@ -1082,14 +1239,16 @@
 
         </div>
 
+
     </div>
 
 
     <!-- =========================
-         REMINDER BOX
+         REMINDERS
     ========================= -->
 
     <div class="reminders">
+
 
         <div class="reminder-box">
 
@@ -1112,6 +1271,7 @@
 
             <button
                 class="btn"
+                type="button"
                 onclick="enableNotifications()"
             >
                 Enable Notifications
@@ -1120,7 +1280,7 @@
 
             <div
                 id="reminderList"
-                style="margin-top: 20px;"
+                style="margin-top:20px;"
             >
 
                 <p class="no-reminders">
@@ -1132,14 +1292,17 @@
 
         </div>
 
+
     </div>
 
 
     <!-- =========================
-         TASK LIST
+         TASKS
     ========================= -->
 
-    <div id="tasks">
+    <div
+        id="tasks"
+    >
 
 
         <div class="section-title">
@@ -1173,6 +1336,7 @@
 
     </div>
 
+
 </section>
 
 
@@ -1189,11 +1353,9 @@
     <div class="modal-content">
 
 
-        <img
-            src="icon.svg"
-            alt="Deadline Buddy"
-            class="modal-logo"
-        >
+        <div class="modal-logo">
+            ✓
+        </div>
 
 
         <h2>
@@ -1202,7 +1364,7 @@
 
 
         <p id="installInstructions">
-            Install Deadline Buddy on your device for faster access.
+            Install Deadline Buddy on your device for quick access.
         </p>
 
 
@@ -1215,6 +1377,7 @@
 
         <button
             class="close-modal"
+            type="button"
             onclick="closeInstallModal()"
         >
             Close
@@ -1222,6 +1385,7 @@
 
 
     </div>
+
 
 </div>
 
@@ -1231,6 +1395,7 @@
 ========================= -->
 
 <footer>
+
 
     <h2>
         Deadline Buddy
@@ -1250,6 +1415,7 @@
         © 2026 Deadline Buddy
     </p>
 
+
 </footer>
 
 
@@ -1257,22 +1423,103 @@
 
 
 /* =====================================================
-   TASK DATA
+   TASK STORAGE
 ===================================================== */
 
 let tasks =
-    JSON.parse(
-        localStorage.getItem(
-            "deadlineBuddyTasks"
+    loadTasks();
+
+
+function loadTasks() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "deadlineBuddyTasks"
+            );
+
+
+        const parsed =
+            saved
+            ? JSON.parse(saved)
+            : [];
+
+
+        return Array.isArray(
+            parsed
         )
-    ) || [];
+        ? parsed
+        : [];
+
+    }
+
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Unable to load tasks:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
 
 
 /* =====================================================
-   PWA INSTALL
+   ELEMENTS
 ===================================================== */
 
-let deferredInstallPrompt = null;
+const taskNameInput =
+    document.getElementById(
+        "taskName"
+    );
+
+
+const taskTypeInput =
+    document.getElementById(
+        "taskType"
+    );
+
+
+const taskDateInput =
+    document.getElementById(
+        "taskDate"
+    );
+
+
+const taskTimeInput =
+    document.getElementById(
+        "taskTime"
+    );
+
+
+const reminderTimeInput =
+    document.getElementById(
+        "reminderTime"
+    );
+
+
+const taskList =
+    document.getElementById(
+        "taskList"
+    );
+
+
+const reminderList =
+    document.getElementById(
+        "reminderList"
+    );
+
+
+const notificationStatus =
+    document.getElementById(
+        "notificationStatus"
+    );
 
 
 const installButton =
@@ -1281,22 +1528,56 @@ const installButton =
     );
 
 
-const isIOS =
-    /iphone|ipad|ipod/i.test(
-        navigator.userAgent
+const installModal =
+    document.getElementById(
+        "installModal"
     );
 
 
-const isStandalone =
-    window.matchMedia(
-        "(display-mode: standalone)"
-    ).matches ||
-    window.navigator.standalone === true;
+const installInstructions =
+    document.getElementById(
+        "installInstructions"
+    );
+
+
+const installSteps =
+    document.getElementById(
+        "installSteps"
+    );
 
 
 /* =====================================================
-   SAVE INSTALL PROMPT
+   PWA INSTALL
 ===================================================== */
+
+let deferredInstallPrompt =
+    null;
+
+
+const isIOS =
+    /iphone|ipad|ipod/i.test(
+        navigator.userAgent
+    ) ||
+    (
+        navigator.platform ===
+            "MacIntel" &&
+        navigator.maxTouchPoints > 1
+    );
+
+
+function isStandaloneMode() {
+
+    return (
+        window.matchMedia(
+            "(display-mode: standalone)"
+        ).matches ||
+        window.navigator.standalone === true
+    );
+
+}
+
+
+/* CHROMIUM INSTALL PROMPT */
 
 window.addEventListener(
     "beforeinstallprompt",
@@ -1311,9 +1592,7 @@ window.addEventListener(
 );
 
 
-/* =====================================================
-   APP INSTALLED
-===================================================== */
+/* APP INSTALLED */
 
 window.addEventListener(
     "appinstalled",
@@ -1322,48 +1601,45 @@ window.addEventListener(
         deferredInstallPrompt =
             null;
 
-        installButton.textContent =
-            "✅ App Installed";
-
-        installButton.classList.add(
-            "installed"
-        );
-
-        installButton.disabled =
-            true;
+        setInstalledButton();
 
     }
 );
 
 
-/* =====================================================
-   INITIAL INSTALL BUTTON
-===================================================== */
+/* SET INSTALLED */
+
+function setInstalledButton() {
+
+    installButton.textContent =
+        "✅ App Installed";
+
+    installButton.classList.add(
+        "installed"
+    );
+
+    installButton.disabled =
+        true;
+
+}
+
+
+/* INITIAL INSTALL BUTTON */
 
 function initializeInstallButton() {
 
     if (
-        isStandalone
+        isStandaloneMode()
     ) {
 
-        installButton.textContent =
-            "✅ App Installed";
-
-        installButton.classList.add(
-            "installed"
-        );
-
-        installButton.disabled =
-            true;
+        setInstalledButton();
 
     }
 
 }
 
 
-/* =====================================================
-   INSTALL APP
-===================================================== */
+/* INSTALL APP */
 
 async function installApp() {
 
@@ -1371,7 +1647,7 @@ async function installApp() {
     /* ALREADY INSTALLED */
 
     if (
-        isStandalone
+        isStandaloneMode()
     ) {
 
         return;
@@ -1379,23 +1655,15 @@ async function installApp() {
     }
 
 
-    /* CHROMIUM INSTALL PROMPT */
+    /* CHROMIUM */
 
     if (
         deferredInstallPrompt
     ) {
 
-        const prompt =
-            deferredInstallPrompt;
-
-
-        deferredInstallPrompt =
-            null;
-
-
         try {
 
-            await prompt.prompt();
+            await deferredInstallPrompt.prompt();
 
         }
 
@@ -1404,6 +1672,7 @@ async function installApp() {
         ) {
 
             console.error(
+                "Install prompt error:",
                 error
             );
 
@@ -1414,13 +1683,13 @@ async function installApp() {
     }
 
 
-    /* IPHONE / IPAD */
+    /* IOS */
 
     if (
         isIOS
     ) {
 
-        showInstallModal(
+        showInstallInstructions(
             "ios"
         );
 
@@ -1431,52 +1700,34 @@ async function installApp() {
 
     /* OTHER DEVICES */
 
-    showInstallModal(
-        "android"
+    showInstallInstructions(
+        "other"
     );
 
 }
 
 
-/* =====================================================
-   INSTALL MODAL
-===================================================== */
+/* INSTALL INSTRUCTIONS */
 
-function showInstallModal(
+function showInstallInstructions(
     device
 ) {
 
-    const modal =
-        document.getElementById(
-            "installModal"
-        );
-
-
-    const instructions =
-        document.getElementById(
-            "installInstructions"
-        );
-
-
-    const steps =
-        document.getElementById(
-            "installSteps"
-        );
-
-
     if (
-        device === "ios"
+        device ===
+        "ios"
     ) {
 
-        instructions.textContent =
+
+        installInstructions.textContent =
             "Add Deadline Buddy to your iPhone or iPad Home Screen.";
 
 
-        steps.innerHTML = `
+        installSteps.innerHTML = `
 
             <p>
                 <strong>1.</strong>
-                Open Deadline Buddy in your browser.
+                Open Deadline Buddy in Safari.
             </p>
 
             <p>
@@ -1494,6 +1745,13 @@ function showInstallModal(
 
             <p>
                 <strong>4.</strong>
+                Keep
+                <strong>Open as Web App</strong>
+                turned on.
+            </p>
+
+            <p>
+                <strong>5.</strong>
                 Tap
                 <strong>Add</strong>.
             </p>
@@ -1502,17 +1760,19 @@ function showInstallModal(
 
     }
 
+
     else {
 
-        instructions.textContent =
-            "Add Deadline Buddy to your device's Home Screen or install it as an app.";
+
+        installInstructions.textContent =
+            "Install Deadline Buddy from your browser.";
 
 
-        steps.innerHTML = `
+        installSteps.innerHTML = `
 
             <p>
                 <strong>Android:</strong>
-                use your browser menu and choose
+                Use your browser menu and choose
                 <strong>Install app</strong>
                 or
                 <strong>Add to Home screen</strong>.
@@ -1520,7 +1780,7 @@ function showInstallModal(
 
             <p>
                 <strong>Desktop:</strong>
-                look for the install icon in the browser address bar
+                Use the install icon in the browser address bar
                 or browser menu.
             </p>
 
@@ -1529,51 +1789,41 @@ function showInstallModal(
     }
 
 
-    modal.classList.add(
+    installModal.classList.add(
         "show"
     );
 
 }
 
 
-/* =====================================================
-   CLOSE INSTALL MODAL
-===================================================== */
+/* CLOSE INSTALL MODAL */
 
 function closeInstallModal() {
 
-    document
-        .getElementById(
-            "installModal"
-        )
-        .classList.remove(
-            "show"
-        );
+    installModal.classList.remove(
+        "show"
+    );
 
 }
 
 
-/* CLOSE WHEN CLICKING OUTSIDE */
+/* CLOSE OUTSIDE */
 
-document
-    .getElementById(
-        "installModal"
-    )
-    .addEventListener(
-        "click",
-        event => {
+installModal.addEventListener(
+    "click",
+    event => {
 
-            if (
-                event.target.id ===
-                "installModal"
-            ) {
+        if (
+            event.target ===
+            installModal
+        ) {
 
-                closeInstallModal();
-
-            }
+            closeInstallModal();
 
         }
-    );
+
+    }
+);
 
 
 /* =====================================================
@@ -1584,55 +1834,36 @@ function addTask() {
 
 
     const name =
-        document
-            .getElementById(
-                "taskName"
-            )
+        taskNameInput
             .value
             .trim();
 
 
     const type =
-        document
-            .getElementById(
-                "taskType"
-            )
-            .value;
+        taskTypeInput.value;
 
 
     const date =
-        document
-            .getElementById(
-                "taskDate"
-            )
-            .value;
+        taskDateInput.value;
 
 
     const time =
-        document
-            .getElementById(
-                "taskTime"
-            )
-            .value;
+        taskTimeInput.value;
 
 
     const reminderTime =
-        document
-            .getElementById(
-                "reminderTime"
-            )
-            .value;
+        reminderTimeInput.value;
 
 
     /* REQUIRED */
 
     if (
-        name === "" ||
-        date === ""
+        !name ||
+        !date
     ) {
 
         alert(
-            "Please enter a task and deadline date."
+            "Please enter a task name and deadline date."
         );
 
         return;
@@ -1643,30 +1874,21 @@ function addTask() {
     /* DEADLINE */
 
     const deadline =
-        new Date(
-            `${date}T${time || "23:59"}:00`
+        createDateTime(
+            date,
+            time || "23:59"
         );
 
 
-    /* REMINDER */
-
-    const reminder =
-        reminderTime
-        ? new Date(
-            `${date}T${reminderTime}:00`
-        )
-        : null;
-
-
-    /* REMINDER MUST BE BEFORE DEADLINE */
-
     if (
-        reminder &&
-        reminder >= deadline
+        !deadline ||
+        Number.isNaN(
+            deadline.getTime()
+        )
     ) {
 
         alert(
-            "Your reminder time must be earlier than the deadline."
+            "Please enter a valid deadline."
         );
 
         return;
@@ -1674,12 +1896,61 @@ function addTask() {
     }
 
 
-    /* CREATE TASK */
+    /* REMINDER */
+
+    let reminder = null;
+
+
+    if (
+        reminderTime
+    ) {
+
+        reminder =
+            createDateTime(
+                date,
+                reminderTime
+            );
+
+
+        if (
+            !reminder ||
+            Number.isNaN(
+                reminder.getTime()
+            )
+        ) {
+
+            alert(
+                "Please enter a valid reminder time."
+            );
+
+            return;
+
+        }
+
+
+        /* REMINDER BEFORE DEADLINE */
+
+        if (
+            reminder >= deadline
+        ) {
+
+            alert(
+                "Your reminder time must be earlier than the deadline."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* CREATE */
 
     const task = {
 
         id:
-            Date.now(),
+            generateTaskId(),
 
         name:
             name,
@@ -1709,39 +1980,71 @@ function addTask() {
 
     saveTasks();
 
+
+    clearTaskForm();
+
+
     displayTasks();
+
 
     updateReminders();
 
-
-    /* CLEAR FORM */
-
-    document
-        .getElementById(
-            "taskName"
-        )
-        .value = "";
+}
 
 
-    document
-        .getElementById(
-            "taskDate"
-        )
-        .value = "";
+/* =====================================================
+   GENERATE ID
+===================================================== */
+
+function generateTaskId() {
+
+    return (
+        Date.now().toString() +
+        Math.random()
+            .toString(36)
+            .slice(2)
+    );
+
+}
 
 
-    document
-        .getElementById(
-            "taskTime"
-        )
-        .value = "";
+/* =====================================================
+   CREATE DATE
+===================================================== */
+
+function createDateTime(
+    date,
+    time
+) {
+
+    const value =
+        `${date}T${time}:00`;
 
 
-    document
-        .getElementById(
-            "reminderTime"
-        )
-        .value = "";
+    return new Date(
+        value
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearTaskForm() {
+
+    taskNameInput.value =
+        "";
+
+    taskDateInput.value =
+        "";
+
+    taskTimeInput.value =
+        "";
+
+    reminderTimeInput.value =
+        "";
 
 }
 
@@ -1752,13 +2055,8 @@ function addTask() {
 
 function displayTasks() {
 
-    const list =
-        document.getElementById(
-            "taskList"
-        );
 
-
-    list.innerHTML =
+    taskList.innerHTML =
         "";
 
 
@@ -1766,7 +2064,7 @@ function displayTasks() {
         tasks.length === 0
     ) {
 
-        list.innerHTML = `
+        taskList.innerHTML = `
 
             <div class="empty">
 
@@ -1785,35 +2083,44 @@ function displayTasks() {
 
         updateStats();
 
-        updateReminders();
 
         return;
 
     }
 
 
-    /* SORT BY DEADLINE */
+    /* SORT */
 
     tasks.sort(
-        (a, b) => {
+        (
+            a,
+            b
+        ) => {
 
-            const aDate =
-                new Date(
-                    `${a.date}T${a.time || "23:59"}:00`
+            const dateA =
+                createDateTime(
+                    a.date,
+                    a.time || "23:59"
                 );
 
 
-            const bDate =
-                new Date(
-                    `${b.date}T${b.time || "23:59"}:00`
+            const dateB =
+                createDateTime(
+                    b.date,
+                    b.time || "23:59"
                 );
 
 
-            return aDate - bDate;
+            return (
+                dateA -
+                dateB
+            );
 
         }
     );
 
+
+    /* TASK CARDS */
 
     tasks.forEach(
         task => {
@@ -1826,12 +2133,18 @@ function displayTasks() {
 
 
             div.className =
-                "task" +
-                (
-                    task.completed
-                    ? " completed"
-                    : ""
+                "task";
+
+
+            if (
+                task.completed
+            ) {
+
+                div.classList.add(
+                    "completed"
                 );
+
+            }
 
 
             const status =
@@ -1842,7 +2155,6 @@ function displayTasks() {
 
             div.innerHTML = `
 
-
                 <div class="task-info">
 
                     <h3>
@@ -1850,7 +2162,6 @@ function displayTasks() {
                             task.name
                         )}
                     </h3>
-
 
                     <p>
                         ${escapeHtml(
@@ -1863,14 +2174,12 @@ function displayTasks() {
 
                 <div class="task-right">
 
-
                     <div class="deadline">
 
                         Due:
                         ${formatDate(
                             task.date
                         )}
-
 
                         ${
                             task.time
@@ -1880,7 +2189,7 @@ function displayTasks() {
                                 ${formatTime(
                                     task.time
                                 )}
-                              `
+                            `
                             : ""
                         }
 
@@ -1889,13 +2198,12 @@ function displayTasks() {
                             !task.completed
                             ? `
                                 <br>
-
                                 <small
                                     class="${status.className}"
                                 >
                                     ${status.text}
                                 </small>
-                              `
+                            `
                             : ""
                         }
 
@@ -1905,7 +2213,6 @@ function displayTasks() {
                     ${
                         task.reminderTime
                         ? `
-
                             <div class="reminder-time">
 
                                 🔔 Remind me at
@@ -1914,49 +2221,42 @@ function displayTasks() {
                                 )}
 
                             </div>
-
-                          `
+                        `
                         : ""
                     }
 
 
                     <div class="task-buttons">
 
-
                         <button
                             class="done-btn"
-                            onclick="completeTask(${task.id})"
+                            type="button"
+                            onclick="completeTask('${task.id}')"
                         >
-
                             ${
                                 task.completed
                                 ? "Undo"
                                 : "Complete"
                             }
-
                         </button>
 
 
                         <button
                             class="delete-btn"
-                            onclick="deleteTask(${task.id})"
+                            type="button"
+                            onclick="deleteTask('${task.id}')"
                         >
-
                             Delete
-
                         </button>
-
 
                     </div>
 
-
                 </div>
-
 
             `;
 
 
-            list.appendChild(
+            taskList.appendChild(
                 div
             );
 
@@ -1965,8 +2265,6 @@ function displayTasks() {
 
 
     updateStats();
-
-    updateReminders();
 
 }
 
@@ -1984,14 +2282,15 @@ function getDeadlineStatus(
 
 
     const deadline =
-        new Date(
-            `${task.date}T${task.time || "23:59"}:00`
+        createDateTime(
+            task.date,
+            task.time || "23:59"
         );
 
 
     const difference =
-        deadline.getTime() -
-        now.getTime();
+        deadline -
+        now;
 
 
     const hours =
@@ -2069,7 +2368,8 @@ function getDeadlineStatus(
 
     const days =
         Math.ceil(
-            hours / 24
+            hours /
+            24
         );
 
 
@@ -2087,15 +2387,10 @@ function getDeadlineStatus(
 
 
 /* =====================================================
-   UPDATE REMINDERS
+   UPDATE REMINDER PANEL
 ===================================================== */
 
 function updateReminders() {
-
-    const reminderList =
-        document.getElementById(
-            "reminderList"
-        );
 
 
     const now =
@@ -2114,8 +2409,10 @@ function updateReminders() {
             task => {
 
                 const deadline =
-                    new Date(
-                        `${task.date}T${task.time || "23:59"}:00`
+                    createDateTime(
+                        task.date,
+                        task.time ||
+                            "23:59"
                     );
 
 
@@ -2152,7 +2449,10 @@ function updateReminders() {
         )
 
         .sort(
-            (a, b) =>
+            (
+                a,
+                b
+            ) =>
                 a.deadline -
                 b.deadline
         );
@@ -2172,6 +2472,7 @@ function updateReminders() {
             </p>
 
         `;
+
 
         return;
 
@@ -2213,10 +2514,10 @@ function updateReminders() {
                             item.task.type
                         )}
 
+
                         ${
                             item.task.reminderTime
                             ? `
-
                                 <div class="reminder-time">
 
                                     🔔 Reminder:
@@ -2231,18 +2532,14 @@ function updateReminders() {
                                     )}
 
                                 </div>
-
-                              `
+                            `
                             : `
-
                                 <div class="reminder-time">
 
-                                    No specific
-                                    reminder time set.
+                                    No specific reminder time set.
 
                                 </div>
-
-                              `
+                            `
                         }
 
                     </div>
@@ -2264,14 +2561,19 @@ async function enableNotifications() {
 
 
     if (
-        !("Notification" in window)
+        !(
+            "Notification"
+            in window
+        )
     ) {
 
         alert(
-            "This browser does not support notifications."
+            "Notifications are not supported by this browser."
         );
 
+
         updateNotificationStatus();
+
 
         return;
 
@@ -2303,9 +2605,10 @@ async function enableNotifications() {
             );
 
 
-            /* TEST NOTIFICATION */
-
             showTestNotification();
+
+
+            checkScheduledReminders();
 
         }
 
@@ -2322,7 +2625,7 @@ async function enableNotifications() {
 
 
             alert(
-                "Notifications are blocked. Please allow them in your browser or device settings."
+                "🚫 Notifications are blocked. Enable them in your browser or device settings."
             );
 
         }
@@ -2333,11 +2636,6 @@ async function enableNotifications() {
             localStorage.setItem(
                 "deadlineBuddyNotificationsEnabled",
                 "false"
-            );
-
-
-            alert(
-                "Notifications were not enabled."
             );
 
         }
@@ -2368,21 +2666,21 @@ async function enableNotifications() {
 
 function updateNotificationStatus() {
 
-    const element =
-        document.getElementById(
-            "notificationStatus"
-        );
-
 
     if (
-        !("Notification" in window)
+        !(
+            "Notification"
+            in window
+        )
     ) {
 
-        element.className =
+        notificationStatus.className =
             "notification-status blocked";
 
-        element.textContent =
+
+        notificationStatus.textContent =
             "❌ Notifications Not Supported";
+
 
         return;
 
@@ -2394,11 +2692,13 @@ function updateNotificationStatus() {
         "granted"
     ) {
 
-        element.className =
+        notificationStatus.className =
             "notification-status enabled";
 
-        element.textContent =
+
+        notificationStatus.textContent =
             "🔔 Notifications Enabled";
+
 
         return;
 
@@ -2410,21 +2710,24 @@ function updateNotificationStatus() {
         "denied"
     ) {
 
-        element.className =
+        notificationStatus.className =
             "notification-status blocked";
 
-        element.textContent =
+
+        notificationStatus.textContent =
             "🚫 Notifications Blocked";
+
 
         return;
 
     }
 
 
-    element.className =
+    notificationStatus.className =
         "notification-status";
 
-    element.textContent =
+
+    notificationStatus.textContent =
         "🔕 Notifications Not Enabled";
 
 }
@@ -2436,6 +2739,7 @@ function updateNotificationStatus() {
 
 function showTestNotification() {
 
+
     if (
         Notification.permission !==
         "granted"
@@ -2446,149 +2750,98 @@ function showTestNotification() {
     }
 
 
-    const icon =
-        new URL(
-            "icon.svg",
-            window.location.href
-        ).href;
+    const options = {
 
+        body:
+            "Notifications are enabled! Deadline Buddy is ready to remind you.",
 
-    new Notification(
-        "Deadline Buddy 🔔",
-        {
+        icon:
+            getIconURL(),
 
-            body:
-                "Notifications are enabled. Your reminder alerts are ready.",
+        badge:
+            getIconURL(),
 
-            icon:
-                icon,
+        tag:
+            "deadline-buddy-test"
 
-            badge:
-                icon,
+    };
 
-            tag:
-                "deadline-buddy-test"
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   REMINDER NOTIFICATION
-===================================================== */
-
-async function showReminderNotification(
-    task
-) {
-
-    const icon =
-        new URL(
-            "icon.svg",
-            window.location.href
-        ).href;
-
-
-    const message =
-        task.time
-
-        ? `"${task.name}" is due at ${formatTime(task.time)}.`
-
-        : `"${task.name}" is due today.`;
-
-
-    /*
-     * Prefer the service worker notification API
-     * when available.
-     */
 
     if (
-        "serviceWorker" in navigator
+        "serviceWorker"
+        in navigator
     ) {
 
-        try {
+        navigator.serviceWorker.ready
+            .then(
+                registration => {
 
-            const registration =
-                await navigator.serviceWorker.ready;
+                    registration.showNotification(
+                        "Deadline Buddy 🔔",
+                        options
+                    );
 
+                }
+            )
+            .catch(
+                () => {
 
-            await registration.showNotification(
-                "Deadline Buddy 🔔",
-                {
-
-                    body:
-                        message,
-
-                    icon:
-                        icon,
-
-                    badge:
-                        icon,
-
-                    tag:
-                        `deadline-buddy-${task.id}`,
-
-                    renotify:
-                        true,
-
-                    data:
-                        {
-                            taskId:
-                                task.id
-                        }
+                    new Notification(
+                        "Deadline Buddy 🔔",
+                        options
+                    );
 
                 }
             );
 
-
-            return;
-
-        }
-
-        catch (
-            error
-        ) {
-
-            console.error(
-                error
-            );
-
-        }
-
     }
 
+    else {
 
-    /* FALLBACK */
+        new Notification(
+            "Deadline Buddy 🔔",
+            options
+        );
 
-    new Notification(
-        "Deadline Buddy 🔔",
-        {
-
-            body:
-                message,
-
-            icon:
-                icon,
-
-            tag:
-                `deadline-buddy-${task.id}`
-
-        }
-    );
+    }
 
 }
 
 
 /* =====================================================
-   CHECK SCHEDULED REMINDERS
+   ICON URL
+===================================================== */
+
+function getIconURL() {
+
+    return new URL(
+        "icon.svg",
+        window.location.href
+    ).href;
+
+}
+
+
+/* =====================================================
+   SCHEDULED REMINDERS
 ===================================================== */
 
 async function checkScheduledReminders() {
 
 
     if (
-        !("Notification" in window) ||
+        !(
+            "Notification"
+            in window
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    if (
         Notification.permission !==
         "granted"
     ) {
@@ -2619,13 +2872,27 @@ async function checkScheduledReminders() {
 
 
         const reminderDate =
-            new Date(
-                `${task.date}T${task.reminderTime}:00`
+            createDateTime(
+                task.date,
+                task.reminderTime
             );
 
 
         if (
-            now < reminderDate
+            !reminderDate ||
+            Number.isNaN(
+                reminderDate.getTime()
+            )
+        ) {
+
+            continue;
+
+        }
+
+
+        if (
+            now <
+            reminderDate
         ) {
 
             continue;
@@ -2634,7 +2901,9 @@ async function checkScheduledReminders() {
 
 
         const key =
-            `deadlineBuddyReminder_${task.id}_${task.date}_${task.reminderTime}`;
+            getReminderKey(
+                task
+            );
 
 
         const alreadyShown =
@@ -2653,9 +2922,92 @@ async function checkScheduledReminders() {
         }
 
 
-        await showReminderNotification(
-            task
-        );
+        const message =
+            task.time
+
+            ? `"${task.name}" is due at ${formatTime(task.time)}.`
+
+            : `"${task.name}" is due today.`;
+
+
+        const options = {
+
+            body:
+                message,
+
+            icon:
+                getIconURL(),
+
+            badge:
+                getIconURL(),
+
+            tag:
+                `deadline-buddy-${task.id}`
+
+        };
+
+
+        try {
+
+            if (
+                "serviceWorker"
+                in navigator
+            ) {
+
+                const registration =
+                    await navigator
+                        .serviceWorker
+                        .ready;
+
+
+                await registration
+                    .showNotification(
+                        "Deadline Buddy 🔔",
+                        options
+                    );
+
+            }
+
+            else {
+
+                new Notification(
+                    "Deadline Buddy 🔔",
+                    options
+                );
+
+            }
+
+        }
+
+        catch (
+            error
+        ) {
+
+            console.error(
+                "Notification error:",
+                error
+            );
+
+            try {
+
+                new Notification(
+                    "Deadline Buddy 🔔",
+                    options
+                );
+
+            }
+
+            catch (
+                fallbackError
+            ) {
+
+                console.error(
+                    fallbackError
+                );
+
+            }
+
+        }
 
 
         localStorage.setItem(
@@ -2668,14 +3020,32 @@ async function checkScheduledReminders() {
 }
 
 
-/* =====================================================
-   CHECK REMINDERS EVERY 10 SECONDS
-===================================================== */
+/* CHECK EVERY 10 SECONDS */
 
 setInterval(
     checkScheduledReminders,
     10000
 );
+
+
+/* =====================================================
+   REMINDER KEY
+===================================================== */
+
+function getReminderKey(
+    task
+) {
+
+    return (
+        "deadlineBuddyReminder_" +
+        task.id +
+        "_" +
+        task.date +
+        "_" +
+        task.reminderTime
+    );
+
+}
 
 
 /* =====================================================
@@ -2686,10 +3056,14 @@ function completeTask(
     id
 ) {
 
+
     const task =
         tasks.find(
             task =>
-                task.id === id
+                String(
+                    task.id
+                ) ===
+                String(id)
         );
 
 
@@ -2706,39 +3080,16 @@ function completeTask(
         !task.completed;
 
 
-    /*
-     * If task is marked complete,
-     * remove its reminder record.
-     */
-
-    if (
-        task.completed
-    ) {
-
-        removeReminderRecord(
-            task
-        );
-
-    }
-
-
-    /*
-     * If task is undone,
-     * allow a new reminder.
-     */
-
-    else {
-
-        removeReminderRecord(
-            task
-        );
-
-    }
+    removeReminderRecord(
+        task
+    );
 
 
     saveTasks();
 
+
     displayTasks();
+
 
     updateReminders();
 
@@ -2753,10 +3104,14 @@ function deleteTask(
     id
 ) {
 
+
     const task =
         tasks.find(
             task =>
-                task.id === id
+                String(
+                    task.id
+                ) ===
+                String(id)
         );
 
 
@@ -2774,13 +3129,18 @@ function deleteTask(
     tasks =
         tasks.filter(
             task =>
-                task.id !== id
+                String(
+                    task.id
+                ) !==
+                String(id)
         );
 
 
     saveTasks();
 
+
     displayTasks();
+
 
     updateReminders();
 
@@ -2795,12 +3155,10 @@ function removeReminderRecord(
     task
 ) {
 
-    const key =
-        `deadlineBuddyReminder_${task.id}_${task.date}_${task.reminderTime}`;
-
-
     localStorage.removeItem(
-        key
+        getReminderKey(
+            task
+        )
     );
 
 }
@@ -2816,8 +3174,20 @@ function formatDate(
 
     const d =
         new Date(
-            `${date}T00:00:00`
+            date +
+            "T00:00:00"
         );
+
+
+    if (
+        Number.isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return date;
+
+    }
 
 
     return d.toLocaleDateString(
@@ -2847,6 +3217,7 @@ function formatTime(
     time
 ) {
 
+
     if (
         !time
     ) {
@@ -2856,11 +3227,20 @@ function formatTime(
     }
 
 
-    const [
-        hour,
-        minute
-    ] =
+    const parts =
         time.split(":");
+
+
+    const hours =
+        Number(
+            parts[0]
+        );
+
+
+    const minutes =
+        Number(
+            parts[1]
+        );
 
 
     const d =
@@ -2868,8 +3248,8 @@ function formatTime(
 
 
     d.setHours(
-        Number(hour),
-        Number(minute),
+        hours,
+        minutes,
         0,
         0
     );
@@ -2892,10 +3272,11 @@ function formatTime(
 
 
 /* =====================================================
-   UPDATE STATISTICS
+   UPDATE STATS
 ===================================================== */
 
 function updateStats() {
+
 
     const total =
         tasks.length;
@@ -2939,35 +3320,57 @@ function updateStats() {
 
 function saveTasks() {
 
-    localStorage.setItem(
-        "deadlineBuddyTasks",
-        JSON.stringify(
-            tasks
-        )
-    );
+    try {
+
+        localStorage.setItem(
+            "deadlineBuddyTasks",
+            JSON.stringify(
+                tasks
+            )
+        );
+
+    }
+
+    catch (
+        error
+    ) {
+
+        console.error(
+            "Unable to save tasks:",
+            error
+        );
+
+
+        alert(
+            "Your browser could not save this task."
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-   ESCAPE USER TEXT
+   ESCAPE USER INPUT
 ===================================================== */
 
 function escapeHtml(
     text
 ) {
 
-    const element =
+    const div =
         document.createElement(
             "div"
         );
 
 
-    element.textContent =
-        text;
+    div.textContent =
+        String(
+            text
+        );
 
 
-    return element.innerHTML;
+    return div.innerHTML;
 
 }
 
@@ -2977,35 +3380,38 @@ function escapeHtml(
 ===================================================== */
 
 if (
-    "serviceWorker" in navigator
+    "serviceWorker"
+    in navigator
 ) {
 
     window.addEventListener(
         "load",
-        async () => {
+        () => {
 
-            try {
-
-                await navigator.serviceWorker.register(
+            navigator.serviceWorker
+                .register(
                     "sw.js"
+                )
+                .then(
+                    registration => {
+
+                        console.log(
+                            "Deadline Buddy service worker registered.",
+                            registration.scope
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.error(
+                            "Service worker registration failed:",
+                            error
+                        );
+
+                    }
                 );
-
-                console.log(
-                    "Deadline Buddy service worker registered."
-                );
-
-            }
-
-            catch (
-                error
-            ) {
-
-                console.error(
-                    "Service worker registration failed:",
-                    error
-                );
-
-            }
 
         }
     );
@@ -3024,6 +3430,20 @@ updateReminders();
 updateNotificationStatus();
 
 initializeInstallButton();
+
+
+/* REFRESH DISPLAY EVERY MINUTE */
+
+setInterval(
+    () => {
+
+        displayTasks();
+
+        updateReminders();
+
+    },
+    60000
+);
 
 
 </script>
