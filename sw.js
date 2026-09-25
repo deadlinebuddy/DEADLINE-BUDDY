@@ -1,263 +1,23 @@
-const CACHE_NAME = "deadline-buddy-v1";
+const CACHE_NAME =
+    "deadline-buddy-v2";
 
-const FILES_TO_CACHE = [
+
+const STATIC_FILES = [
+
     "./",
+
     "./index.html",
+
     "./manifest.json",
+
     "./icon.svg"
+
 ];
 
 
-/* INSTALL */
-
-self.addEventListener(
-    "install",
-    event => {
-
-        event.waitUntil(
-
-            caches.open(
-                CACHE_NAME
-            )
-            .then(
-                cache =>
-                    cache.addAll(
-                        FILES_TO_CACHE
-                    )
-            )
-
-        );
-
-        self.skipWaiting();
-
-    }
-);
-
-
-/* ACTIVATE */
-
-self.addEventListener(
-    "activate",
-    event => {
-
-        event.waitUntil(
-
-            caches.keys()
-            .then(
-                keys =>
-
-                    Promise.all(
-
-                        keys
-                            .filter(
-                                key =>
-                                    key !==
-                                    CACHE_NAME
-                            )
-                            .map(
-                                key =>
-                                    caches.delete(
-                                        key
-                                    )
-                            )
-
-                    )
-
-            )
-
-        );
-
-        self.clients.claim();
-
-    }
-);
-
-
-/* FETCH */
-
-self.addEventListener(
-    "fetch",
-    event => {
-
-        event.respondWith(
-
-            caches.match(
-                event.request
-            )
-            .then(
-                cachedResponse => {
-
-                    if (
-                        cachedResponse
-                    ) {
-
-                        return cachedResponse;
-
-                    }
-
-
-                    return fetch(
-                        event.request
-                    );
-
-                }
-            )
-
-        );
-
-    }
-);
-
-
-/* PUSH NOTIFICATION */
-
-self.addEventListener(
-    "push",
-    event => {
-
-        let data = {
-
-            title:
-                "Deadline Buddy 🔔",
-
-            message:
-                "You have a new reminder."
-
-        };
-
-
-        if (
-            event.data
-        ) {
-
-            try {
-
-                data =
-                    event.data.json();
-
-            }
-
-            catch (
-                error
-            ) {
-
-                data.message =
-                    event.data.text();
-
-            }
-
-        }
-
-
-        event.waitUntil(
-
-            self.registration.showNotification(
-                data.title,
-                {
-
-                    body:
-                        data.message,
-
-                    icon:
-                        "./icon.svg",
-
-                    badge:
-                        "./icon.svg",
-
-                    vibrate:
-                        [
-                            200,
-                            100,
-                            200
-                        ],
-
-                    tag:
-                        "deadline-buddy-reminder",
-
-                    renotify:
-                        true
-
-                }
-            )
-
-        );
-
-    }
-);
-
-
-/* NOTIFICATION CLICK */
-
-self.addEventListener(
-    "notificationclick",
-    event => {
-
-        event.notification.close();
-
-
-        event.waitUntil(
-
-            clients.matchAll(
-                {
-                    type:
-                        "window",
-                    includeUncontrolled:
-                        true
-                }
-            )
-            .then(
-                clientList => {
-
-                    for (
-                        const client
-                        of clientList
-                    ) {
-
-                        if (
-                            client.url.includes(
-                                "index.html"
-                            ) &&
-                            "focus"
-                            in client
-                        ) {
-
-                            return client.focus();
-
-                        }
-
-                    }
-
-
-                    if (
-                        clients.openWindow
-                    ) {
-
-                        return clients.openWindow(
-                            "./"
-                        );
-
-                    }
-
-                }
-            )
-
-        );
-
-    }
-);
-const CACHE_NAME = "deadline-buddy-v1";
-
-const FILES_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./manifest.json",
-    "./icon.svg"
-];
-
-
-/* ===============================
+/* =========================================
    INSTALL
-================================ */
+========================================= */
 
 self.addEventListener(
     "install",
@@ -272,7 +32,7 @@ self.addEventListener(
                 .then(
                     cache =>
                         cache.addAll(
-                            FILES_TO_CACHE
+                            STATIC_FILES
                         )
                 )
 
@@ -284,9 +44,9 @@ self.addEventListener(
 );
 
 
-/* ===============================
+/* =========================================
    ACTIVATE
-================================ */
+========================================= */
 
 self.addEventListener(
     "activate",
@@ -326,20 +86,103 @@ self.addEventListener(
 );
 
 
-/* ===============================
+/* =========================================
    FETCH
-================================ */
+========================================= */
 
 self.addEventListener(
     "fetch",
     event => {
 
+        /*
+         * Only handle GET requests.
+         */
+
+        if (
+            event.request.method !==
+            "GET"
+        ) {
+
+            return;
+
+        }
+
+
+        const request =
+            event.request;
+
+
+        /*
+         * HTML:
+         * Network first, then cache.
+         *
+         * This allows GitHub Pages
+         * to deliver updated versions.
+         */
+
+        if (
+            request.mode ===
+            "navigate"
+        ) {
+
+            event.respondWith(
+
+                fetch(
+                    request
+                )
+
+                .then(
+                    response => {
+
+                        const copy =
+                            response.clone();
+
+
+                        caches
+                            .open(
+                                CACHE_NAME
+                            )
+                            .then(
+                                cache =>
+                                    cache.put(
+                                        request,
+                                        copy
+                                    )
+                            );
+
+
+                        return response;
+
+                    }
+                )
+
+                .catch(
+                    () =>
+                        caches.match(
+                            request
+                        )
+                )
+
+            );
+
+
+            return;
+
+        }
+
+
+        /*
+         * Static files:
+         * Cache first, network fallback.
+         */
+
         event.respondWith(
 
             caches
                 .match(
-                    event.request
+                    request
                 )
+
                 .then(
                     cached => {
 
@@ -353,7 +196,7 @@ self.addEventListener(
 
 
                         return fetch(
-                            event.request
+                            request
                         );
 
                     }
@@ -365,9 +208,9 @@ self.addEventListener(
 );
 
 
-/* ===============================
-   PUSH NOTIFICATION
-================================ */
+/* =========================================
+   PUSH NOTIFICATIONS
+========================================= */
 
 self.addEventListener(
     "push",
@@ -383,6 +226,10 @@ self.addEventListener(
 
         };
 
+
+        /*
+         * Read push data when available.
+         */
 
         if (
             event.data
@@ -409,30 +256,33 @@ self.addEventListener(
 
         event.waitUntil(
 
-            self.registration.showNotification(
-                data.title,
-                {
+            self.registration
+                .showNotification(
+                    data.title,
 
-                    body:
-                        data.message,
+                    {
 
-                    icon:
-                        "./icon.svg",
+                        body:
+                            data.message,
 
-                    badge:
-                        "./icon.svg",
+                        icon:
+                            "./icon.svg",
 
-                    tag:
-                        "deadline-buddy-reminder",
+                        badge:
+                            "./icon.svg",
 
-                    renotify:
-                        true,
+                        tag:
+                            data.tag ||
+                            "deadline-buddy-reminder",
 
-                    data:
-                        data
+                        renotify:
+                            true,
 
-                }
-            )
+                        data:
+                            data
+
+                    }
+                )
 
         );
 
@@ -440,9 +290,9 @@ self.addEventListener(
 );
 
 
-/* ===============================
+/* =========================================
    NOTIFICATION CLICK
-================================ */
+========================================= */
 
 self.addEventListener(
     "notificationclick",
@@ -463,6 +313,7 @@ self.addEventListener(
                             true
                     }
                 )
+
                 .then(
                     clientList => {
 
