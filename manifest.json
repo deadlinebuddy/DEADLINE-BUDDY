@@ -48,3 +48,36 @@
         }
     ]
 }
+{
+    "id": "./",
+    "name": "Deadline Buddy",
+    "short_name": "Deadline Buddy",
+
+    "description": "A student-friendly app for managing school tasks, deadlines, and reminders.",
+
+    "start_url": "./",
+    "scope": "./",
+
+    "display": "standalone",
+
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+    ],
+
+    "orientation": "portrait",
+
+    "background_color": "#f5f6fb",
+    "theme_color": "#5b4bdb",
+
+    "prefer_related_applications": false,
+
+    "icons": [
+        {
+            "src": "icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
