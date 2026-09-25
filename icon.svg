@@ -5,32 +5,32 @@
 
     <defs>
 
-        <!-- Main gradient -->
         <linearGradient
-            id="bgGradient"
+            id="bg"
             x1="0"
             y1="0"
             x2="1"
             y2="1"
         >
+
             <stop
                 offset="0%"
-                stop-color="#7567ef"
+                stop-color="#8178ff"
             />
 
             <stop
                 offset="55%"
-                stop-color="#5b4bdb"
+                stop-color="#635bff"
             />
 
             <stop
                 offset="100%"
-                stop-color="#4032a9"
+                stop-color="#443bc4"
             />
+
         </linearGradient>
 
 
-        <!-- Highlight -->
         <linearGradient
             id="shine"
             x1="0"
@@ -38,10 +38,11 @@
             x2="1"
             y2="1"
         >
+
             <stop
                 offset="0%"
                 stop-color="#ffffff"
-                stop-opacity="0.35"
+                stop-opacity="0.32"
             />
 
             <stop
@@ -49,120 +50,99 @@
                 stop-color="#ffffff"
                 stop-opacity="0"
             />
+
         </linearGradient>
-
-
-        <!-- Shadow -->
-        <filter
-            id="shadow"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-        >
-
-            <feDropShadow
-                dx="0"
-                dy="12"
-                stdDeviation="14"
-                flood-color="#29234f"
-                flood-opacity="0.25"
-            />
-
-        </filter>
 
     </defs>
 
 
-    <!-- OUTER APP ICON -->
+    <!-- MAIN APP ICON -->
 
     <rect
-        x="20"
-        y="20"
-        width="472"
-        height="472"
-        rx="115"
-        fill="url(#bgGradient)"
-        filter="url(#shadow)"
+        x="16"
+        y="16"
+        width="480"
+        height="480"
+        rx="112"
+        fill="url(#bg)"
     />
 
 
-    <!-- TOP SHINE -->
+    <!-- SHINE -->
 
-    <path
-        d="
-            M 60 160
-            Q 100 55 230 45
-            Q 360 35 450 100
-            L 450 180
-            Q 330 125 60 180
-            Z
-        "
+    <ellipse
+        cx="140"
+        cy="75"
+        rx="160"
+        ry="65"
         fill="url(#shine)"
+        transform="rotate(-18 140 75)"
     />
 
 
-    <!-- DECORATIVE CIRCLES -->
-
-    <circle
-        cx="100"
-        cy="105"
-        r="16"
-        fill="#ffffff"
-        opacity="0.18"
-    />
-
-    <circle
-        cx="415"
-        cy="120"
-        r="11"
-        fill="#ffffff"
-        opacity="0.25"
-    />
+    <!-- DECORATIVE DOTS -->
 
     <circle
         cx="405"
-        cy="410"
-        r="18"
-        fill="#ffffff"
-        opacity="0.12"
+        cy="108"
+        r="13"
+        fill="white"
+        opacity="0.28"
     />
 
 
-    <!-- INNER CARD -->
+    <circle
+        cx="95"
+        cy="402"
+        r="10"
+        fill="white"
+        opacity="0.22"
+    />
+
+
+    <circle
+        cx="425"
+        cy="405"
+        r="7"
+        fill="white"
+        opacity="0.18"
+    />
+
+
+    <!-- INNER SHAPE -->
 
     <rect
-        x="75"
-        y="75"
-        width="362"
-        height="362"
-        rx="80"
-        fill="#ffffff"
-        opacity="0.10"
+        x="70"
+        y="70"
+        width="372"
+        height="372"
+        rx="88"
+        fill="white"
+        opacity="0.08"
     />
 
 
-    <!-- DB BACKDROP -->
+    <!-- DB BACKGROUND CIRCLE -->
 
     <circle
         cx="256"
         cy="256"
-        r="145"
-        fill="#29234f"
-        opacity="0.25"
+        r="152"
+        fill="#292550"
+        opacity="0.24"
     />
 
 
     <!-- D -->
 
     <text
-        x="150"
-        y="327"
+        x="91"
+        y="335"
         font-family="Arial, Helvetica, sans-serif"
-        font-size="205"
+        font-size="212"
         font-weight="900"
-        fill="#ffffff"
-        letter-spacing="-20"
+        fill="white"
+        letter-spacing="-26"
     >
         D
     </text>
@@ -171,62 +151,60 @@
     <!-- B -->
 
     <text
-        x="255"
-        y="327"
+        x="238"
+        y="335"
         font-family="Arial, Helvetica, sans-serif"
-        font-size="205"
+        font-size="212"
         font-weight="900"
-        fill="#ffffff"
-        letter-spacing="-20"
+        fill="white"
+        letter-spacing="-26"
     >
         B
     </text>
 
 
-    <!-- CHECK CIRCLE -->
+    <!-- CHECK BADGE -->
 
     <circle
-        cx="365"
-        cy="365"
-        r="48"
-        fill="#ffffff"
+        cx="390"
+        cy="388"
+        r="55"
+        fill="white"
     />
 
 
     <circle
-        cx="365"
-        cy="365"
-        r="39"
-        fill="#5b4bdb"
+        cx="390"
+        cy="388"
+        r="44"
+        fill="#635bff"
     />
 
-
-    <!-- CHECK MARK -->
 
     <polyline
         points="
-            342,365
-            358,380
-            390,346
+            364,388
+            383,407
+            419,367
         "
         fill="none"
-        stroke="#ffffff"
-        stroke-width="13"
+        stroke="white"
+        stroke-width="15"
         stroke-linecap="round"
         stroke-linejoin="round"
     />
 
 
-    <!-- SMALL DECORATIVE LINE -->
+    <!-- SMALL ACCENT -->
 
     <rect
-        x="132"
-        y="360"
+        x="125"
+        y="380"
         width="95"
-        height="10"
-        rx="5"
-        fill="#ffffff"
-        opacity="0.35"
+        height="9"
+        rx="4.5"
+        fill="white"
+        opacity="0.28"
     />
 
 </svg>
