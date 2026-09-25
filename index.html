@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,15 +11,15 @@
 
     <meta
         name="theme-color"
-        content="#5b4bdb"
+        content="#635bff"
     >
 
     <meta
         name="description"
-        content="Deadline Buddy helps students manage tasks, deadlines, and reminders."
+        content="Deadline Buddy helps students organize tasks, deadlines, and reminders."
     >
 
-    <!-- iPhone / iPad -->
+    <!-- iOS WEB APP -->
     <meta
         name="apple-mobile-web-app-capable"
         content="yes"
@@ -57,75 +56,157 @@
 
     <style>
 
+        /* =========================================
+           RESET
+        ========================================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        }
+
+
+        :root {
+            --primary: #635bff;
+            --primary-dark: #5148e6;
+            --primary-light: #eeecff;
+
+            --dark: #19172b;
+            --text: #3f3d4a;
+            --muted: #858291;
+
+            --bg: #f7f7fb;
+            --white: #ffffff;
+
+            --green: #1f9d55;
+            --green-bg: #e8f8ef;
+
+            --red: #df4b4b;
+            --red-bg: #fff0f0;
+
+            --orange: #d88a16;
+            --orange-bg: #fff6e4;
+
+            --blue-bg: #eef4ff;
+
+            --border: #ebeaf2;
+
+            --shadow-sm:
+                0 5px 20px rgba(27, 23, 60, 0.06);
+
+            --shadow-md:
+                0 15px 45px rgba(27, 23, 60, 0.10);
+
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --radius-sm: 11px;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
         }
 
 
         body {
-            background: #f5f6fb;
-            color: #222;
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
         }
 
 
-        /* =========================
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* =========================================
            NAVBAR
-        ========================= */
+        ========================================= */
 
-        nav {
-            background: white;
-
-            padding: 15px 8%;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 20px;
-
-            box-shadow:
-                0 2px 10px rgba(0,0,0,0.08);
-
+        .navbar {
             position: sticky;
 
             top: 0;
 
             z-index: 1000;
+
+            background:
+                rgba(255,255,255,0.92);
+
+            backdrop-filter:
+                blur(16px);
+
+            border-bottom:
+                1px solid rgba(0,0,0,0.05);
         }
 
 
-        .logo {
+        .nav-container {
+            width: min(
+                1180px,
+                calc(100% - 40px)
+            );
+
+            margin: auto;
+
+            min-height: 76px;
+
             display: flex;
 
             align-items: center;
 
-            gap: 10px;
+            justify-content: space-between;
 
-            font-size: 24px;
-
-            font-weight: bold;
-
-            color: #5b4bdb;
-
-            white-space: nowrap;
+            gap: 20px;
         }
 
 
-        /* OLD DB LOGO */
+        /* =========================================
+           DB LOGO
+        ========================================= */
 
-        .logo-icon {
-            width: 40px;
+        .brand {
+            display: flex;
 
-            height: 40px;
+            align-items: center;
 
-            border-radius: 10px;
+            gap: 12px;
 
-            background: #5b4bdb;
+            text-decoration: none;
+
+            color: var(--dark);
+
+            flex-shrink: 0;
+        }
+
+
+        .brand-icon {
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 14px;
+
+            position: relative;
 
             display: flex;
 
@@ -133,15 +214,103 @@
 
             justify-content: center;
 
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7b72ff,
+                    #635bff 55%,
+                    #453cc5
+                );
+
+            box-shadow:
+                0 8px 18px
+                rgba(99,91,255,0.28);
+        }
+
+
+        .brand-icon::before {
+            content: "";
+
+            position: absolute;
+
+            width: 58px;
+
+            height: 20px;
+
+            top: -4px;
+
+            left: -8px;
+
+            background:
+                rgba(255,255,255,0.18);
+
+            border-radius: 50%;
+
+            transform:
+                rotate(-24deg);
+        }
+
+
+        .brand-icon::after {
+            content: "✓";
+
+            position: absolute;
+
+            right: 2px;
+
+            bottom: 2px;
+
+            width: 16px;
+
+            height: 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: var(--primary);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 3px 8px
+                rgba(0,0,0,0.18);
+        }
+
+
+        .brand-db {
+            position: relative;
+
+            z-index: 2;
+
             color: white;
 
-            font-size: 16px;
+            font-size: 18px;
 
-            font-weight: bold;
+            line-height: 1;
 
-            letter-spacing: -1px;
+            font-weight: 900;
 
-            flex-shrink: 0;
+            letter-spacing: -3px;
+        }
+
+
+        .brand-name {
+            font-size: 19px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.3px;
         }
 
 
@@ -150,759 +319,2394 @@
 
             align-items: center;
 
-            gap: 20px;
+            gap: 25px;
         }
 
 
         .nav-links a {
+            color: var(--muted);
+
             text-decoration: none;
 
-            color: #333;
+            font-size: 14px;
 
-            font-weight: 500;
+            font-weight: 600;
+
+            transition:
+                color 0.2s ease;
         }
 
 
         .nav-links a:hover {
-            color: #5b4bdb;
-        }
-
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        .btn {
-            border: none;
-
-            background: #5b4bdb;
-
-            color: white;
-
-            padding: 13px 20px;
-
-            border-radius: 9px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-            transition: 0.2s;
-        }
-
-
-        .btn:hover {
-            background: #4435b5;
+            color: var(--primary);
         }
 
 
         .install-btn {
             border: none;
 
-            background: #5b4bdb;
+            padding:
+                10px 15px;
 
-            color: white;
+            border-radius:
+                10px;
 
-            padding: 10px 15px;
+            background:
+                var(--primary);
 
-            border-radius: 8px;
+            color:
+                white;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
-            font-weight: bold;
+            font-weight:
+                700;
 
-            white-space: nowrap;
+            font-size:
+                13px;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
         }
 
 
         .install-btn:hover {
-            background: #4435b5;
+            background:
+                var(--primary-dark);
+
+            transform:
+                translateY(-1px);
         }
 
 
         .install-btn.installed {
-            background: #218739;
+            background:
+                var(--green);
 
-            cursor: default;
+            cursor:
+                default;
         }
 
 
-        /* =========================
+        /* =========================================
            HERO
-        ========================= */
+        ========================================= */
 
         .hero {
-            padding: 90px 8%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #eeeaff,
-                    #ffffff
-                );
+            padding:
+                78px 20px 65px;
         }
 
 
-        .hero-content {
-            max-width: 850px;
+        .hero-container {
+            width:
+                min(
+                    1180px,
+                    100%
+                );
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.15fr
+                0.85fr;
+
+            gap:
+                55px;
+
+            align-items:
+                center;
+        }
+
+
+        .eyebrow {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                8px 12px;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--primary-light);
+
+            color:
+                var(--primary);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.7px;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        .eyebrow-dot {
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--primary);
         }
 
 
         .hero h1 {
-            font-size: 55px;
+            color:
+                var(--dark);
 
-            color: #29234f;
+            font-size:
+                clamp(
+                    42px,
+                    6vw,
+                    72px
+                );
 
-            margin-bottom: 20px;
+            line-height:
+                0.98;
+
+            letter-spacing:
+                -3px;
+
+            max-width:
+                680px;
         }
 
 
         .hero h1 span {
-            color: #5b4bdb;
+            color:
+                var(--primary);
         }
 
 
-        .hero p {
-            font-size: 19px;
+        .hero-description {
+            max-width:
+                650px;
 
-            line-height: 1.7;
+            margin-top:
+                23px;
 
-            color: #555;
+            color:
+                var(--muted);
 
-            margin-bottom: 30px;
+            font-size:
+                17px;
+
+            line-height:
+                1.75;
         }
 
 
-        /* =========================
-           DASHBOARD
-        ========================= */
+        .hero-buttons {
+            display:
+                flex;
 
-        .dashboard {
-            padding: 60px 8%;
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+
+            margin-top:
+                30px;
         }
 
 
-        .section-title {
-            margin-bottom: 30px;
+        .primary-btn,
+        .secondary-btn {
+            border:
+                none;
+
+            padding:
+                14px 20px;
+
+            border-radius:
+                12px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            text-decoration:
+                none;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            transition:
+                0.2s ease;
         }
 
 
-        .section-title h2 {
-            font-size: 32px;
+        .primary-btn {
+            background:
+                var(--primary);
 
-            color: #29234f;
+            color:
+                white;
+
+            box-shadow:
+                0 10px 25px
+                rgba(99,91,255,0.25);
         }
 
 
-        .section-title p {
-            color: #777;
+        .primary-btn:hover {
+            background:
+                var(--primary-dark);
 
-            margin-top: 8px;
+            transform:
+                translateY(-2px);
         }
 
 
-        /* =========================
-           STATS
-        ========================= */
+        .secondary-btn {
+            background:
+                white;
 
-        .stats {
-            display: grid;
+            color:
+                var(--dark);
+
+            border:
+                1px solid var(--border);
+        }
+
+
+        .secondary-btn:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                var(--shadow-sm);
+        }
+
+
+        /* =========================================
+           HERO MOCKUP
+        ========================================= */
+
+        .hero-preview {
+            position:
+                relative;
+
+            min-height:
+                420px;
+        }
+
+
+        .preview-glow {
+            position:
+                absolute;
+
+            width:
+                270px;
+
+            height:
+                270px;
+
+            right:
+                25px;
+
+            top:
+                30px;
+
+            border-radius:
+                50%;
+
+            background:
+                #dcd9ff;
+
+            filter:
+                blur(35px);
+
+            opacity:
+                0.75;
+        }
+
+
+        .preview-card {
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            margin-top:
+                24px;
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                26px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                var(--shadow-md);
+
+            transform:
+                rotate(2deg);
+        }
+
+
+        .preview-top {
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .preview-title {
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+
+            color:
+                var(--dark);
+        }
+
+
+        .preview-mini-btn {
+            background:
+                var(--primary-light);
+
+            color:
+                var(--primary);
+
+            padding:
+                7px 10px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+        }
+
+
+        .preview-stat-row {
+            display:
+                grid;
 
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap: 20px;
+            gap:
+                10px;
 
-            margin-bottom: 40px;
+            margin-bottom:
+                16px;
+        }
+
+
+        .preview-stat {
+            padding:
+                14px;
+
+            border-radius:
+                13px;
+
+            background:
+                #fafaff;
+        }
+
+
+        .preview-stat small {
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .preview-stat strong {
+            font-size:
+                21px;
+
+            color:
+                var(--dark);
+        }
+
+
+        .preview-task {
+            padding:
+                15px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                14px;
+
+            margin-top:
+                10px;
+        }
+
+
+        .preview-task-top {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+        }
+
+
+        .preview-task-name {
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            color:
+                var(--dark);
+        }
+
+
+        .preview-badge {
+            padding:
+                5px 8px;
+
+            background:
+                var(--green-bg);
+
+            color:
+                var(--green);
+
+            border-radius:
+                999px;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+        }
+
+
+        .preview-task-info {
+            margin-top:
+                7px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+        }
+
+
+        /* =========================================
+           APP SECTION
+        ========================================= */
+
+        .app-section {
+            padding:
+                10px 20px 70px;
+        }
+
+
+        .app-container {
+            width:
+                min(
+                    1180px,
+                    100%
+                );
+
+            margin:
+                auto;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #292550,
+                    #3c356f
+                );
+
+            color:
+                white;
+
+            border-radius:
+                26px;
+
+            padding:
+                28px 30px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                25px;
+
+            overflow:
+                hidden;
+
+            position:
+                relative;
+
+            box-shadow:
+                var(--shadow-md);
+        }
+
+
+        .app-container::after {
+            content: "";
+
+            position:
+                absolute;
+
+            width:
+                240px;
+
+            height:
+                240px;
+
+            border-radius:
+                50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            right:
+                -70px;
+
+            top:
+                -90px;
+        }
+
+
+        .app-copy {
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .app-copy h2 {
+            font-size:
+                24px;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .app-copy p {
+            color:
+                rgba(255,255,255,0.72);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.6;
+        }
+
+
+        .app-button {
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            background:
+                white;
+
+            color:
+                var(--dark);
+
+            border:
+                none;
+
+            padding:
+                13px 18px;
+
+            border-radius:
+                11px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+        }
+
+
+        /* =========================================
+           MAIN DASHBOARD
+        ========================================= */
+
+        .main {
+            padding:
+                0 20px 80px;
+        }
+
+
+        .main-container {
+            width:
+                min(
+                    1180px,
+                    100%
+                );
+
+            margin:
+                auto;
+        }
+
+
+        .dashboard-header {
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .dashboard-header h2 {
+            font-size:
+                32px;
+
+            letter-spacing:
+                -1px;
+
+            color:
+                var(--dark);
+        }
+
+
+        .dashboard-header p {
+            color:
+                var(--muted);
+
+            margin-top:
+                6px;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =========================================
+           STAT CARDS
+        ========================================= */
+
+        .stats {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                15px;
+
+            margin-bottom:
+                24px;
         }
 
 
         .stat-card {
-            background: white;
+            background:
+                white;
 
-            padding: 25px;
+            border:
+                1px solid var(--border);
 
-            border-radius: 15px;
+            border-radius:
+                var(--radius-md);
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.06);
-        }
-
-
-        .stat-card h3 {
-            font-size: 15px;
-
-            color: #777;
-
-            margin-bottom: 10px;
-        }
-
-
-        .stat-card strong {
-            font-size: 35px;
-
-            color: #5b4bdb;
-        }
-
-
-        /* =========================
-           ADD TASK
-        ========================= */
-
-        .add-task {
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 15px;
+            padding:
+                21px;
 
             box-shadow:
-                0 5px 20px rgba(0,0,0,0.06);
+                var(--shadow-sm);
 
-            margin-bottom: 40px;
+            position:
+                relative;
+
+            overflow:
+                hidden;
         }
 
 
-        .add-task h2 {
-            color: #29234f;
+        .stat-card::after {
+            content: "";
 
-            margin-bottom: 8px;
+            position:
+                absolute;
+
+            width:
+                80px;
+
+            height:
+                80px;
+
+            border-radius:
+                50%;
+
+            right:
+                -25px;
+
+            top:
+                -25px;
+
+            background:
+                var(--primary-light);
+
+            opacity:
+                0.6;
         }
 
 
-        .add-task > p {
-            color: #777;
+        .stat-label {
+            color:
+                var(--muted);
 
-            margin-bottom: 20px;
+            font-size:
+                12px;
 
-            line-height: 1.5;
+            font-weight:
+                700;
         }
 
 
-        .form-grid {
-            display: grid;
+        .stat-number {
+            display:
+                block;
+
+            margin-top:
+                8px;
+
+            color:
+                var(--dark);
+
+            font-size:
+                33px;
+
+            font-weight:
+                850;
+
+            letter-spacing:
+                -1px;
+        }
+
+
+        .stat-detail {
+            display:
+                block;
+
+            margin-top:
+                6px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+        }
+
+
+        /* =========================================
+           CONTENT GRID
+        ========================================= */
+
+        .content-grid {
+            display:
+                grid;
 
             grid-template-columns:
-                2fr
-                1fr
-                1fr
-                1fr
-                1.5fr
-                1fr;
+                0.95fr
+                1.35fr;
 
-            gap: 12px;
+            gap:
+                20px;
 
-            align-items: end;
+            align-items:
+                start;
+        }
+
+
+        .panel {
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius-lg);
+
+            box-shadow:
+                var(--shadow-sm);
+
+            overflow:
+                hidden;
+        }
+
+
+        .panel-header {
+            padding:
+                21px 22px;
+
+            border-bottom:
+                1px solid var(--border);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+        }
+
+
+        .panel-header h3 {
+            color:
+                var(--dark);
+
+            font-size:
+                17px;
+        }
+
+
+        .panel-header p {
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            margin-top:
+                4px;
+        }
+
+
+        /* =========================================
+           TASK FORM
+        ========================================= */
+
+        .task-form {
+            padding:
+                22px;
+        }
+
+
+        .field {
+            margin-bottom:
+                15px;
+        }
+
+
+        .field:last-child {
+            margin-bottom:
+                0;
+        }
+
+
+        .field label {
+            display:
+                block;
+
+            margin-bottom:
+                7px;
+
+            color:
+                var(--text);
+
+            font-size:
+                12px;
+
+            font-weight:
+                750;
         }
 
 
         input,
         select {
-            width: 100%;
+            width:
+                100%;
 
-            padding: 13px;
+            padding:
+                12px 13px;
 
             border:
-                1px solid #ddd;
+                1px solid var(--border);
 
-            border-radius: 8px;
+            background:
+                #fcfcfe;
 
-            outline: none;
+            border-radius:
+                10px;
 
-            background: white;
+            outline:
+                none;
 
-            font-size: 14px;
+            color:
+                var(--text);
+
+            transition:
+                0.2s ease;
         }
 
 
         input:focus,
         select:focus {
-            border-color: #5b4bdb;
-        }
+            background:
+                white;
 
-
-        .reminder-input {
-            width: 100%;
-        }
-
-
-        .reminder-input label {
-            display: block;
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            color: #555;
-
-            margin-bottom: 7px;
-        }
-
-
-        /* =========================
-           REMINDERS
-        ========================= */
-
-        .reminders {
-            margin-bottom: 40px;
-        }
-
-
-        .reminder-box {
-            background: white;
-
-            padding: 25px;
-
-            border-radius: 15px;
+            border-color:
+                var(--primary);
 
             box-shadow:
-                0 5px 20px rgba(0,0,0,0.06);
-
-            border-left:
-                5px solid #5b4bdb;
+                0 0 0 3px
+                rgba(99,91,255,0.10);
         }
 
 
-        .reminder-box h2 {
-            color: #29234f;
+        .two-fields {
+            display:
+                grid;
 
-            margin-bottom: 12px;
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                11px;
+        }
+
+
+        .add-task-btn {
+            width:
+                100%;
+
+            margin-top:
+                5px;
+
+            border:
+                none;
+
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            padding:
+                13px;
+
+            border-radius:
+                10px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                800;
+        }
+
+
+        .add-task-btn:hover {
+            background:
+                var(--primary-dark);
+        }
+
+
+        /* =========================================
+           NOTIFICATION PANEL
+        ========================================= */
+
+        .notification-wrap {
+            margin-top:
+                18px;
+
+            padding:
+                15px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                13px;
+
+            background:
+                #fafaff;
+        }
+
+
+        .notification-top {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+        }
+
+
+        .notification-title {
+            font-weight:
+                800;
+
+            color:
+                var(--dark);
+
+            font-size:
+                13px;
         }
 
 
         .notification-status {
-            display: inline-flex;
+            display:
+                inline-flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            padding: 9px 14px;
+            gap:
+                6px;
 
-            border-radius: 999px;
+            padding:
+                6px 9px;
 
-            font-size: 14px;
+            border-radius:
+                999px;
 
-            font-weight: bold;
+            font-size:
+                10px;
 
-            background: #f0f0f0;
+            font-weight:
+                800;
 
-            color: #666;
+            background:
+                #f0eff5;
 
-            margin-bottom: 15px;
+            color:
+                var(--muted);
         }
 
 
         .notification-status.enabled {
-            background: #dff6e5;
+            background:
+                var(--green-bg);
 
-            color: #218739;
+            color:
+                var(--green);
         }
 
 
         .notification-status.blocked {
-            background: #ffe1e1;
+            background:
+                var(--red-bg);
 
-            color: #d33;
+            color:
+                var(--red);
         }
 
 
-        .reminder-item {
-            padding: 14px 0;
+        .notification-text {
+            margin-top:
+                7px;
 
-            border-bottom:
-                1px solid #eee;
+            color:
+                var(--muted);
 
-            line-height: 1.5;
+            font-size:
+                11px;
+
+            line-height:
+                1.5;
         }
 
 
-        .reminder-item:last-child {
-            border-bottom: none;
+        .notification-btn {
+            width:
+                100%;
+
+            margin-top:
+                11px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                white;
+
+            color:
+                var(--dark);
+
+            padding:
+                10px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                750;
+
+            font-size:
+                11px;
         }
 
 
-        .reminder-item strong {
-            color: #29234f;
+        .notification-btn:hover {
+            border-color:
+                var(--primary);
+
+            color:
+                var(--primary);
         }
 
 
-        .reminder-today {
-            color: #d33;
+        /* =========================================
+           TASK PANEL
+        ========================================= */
 
-            font-weight: bold;
+        .task-panel-body {
+            padding:
+                15px;
         }
 
 
-        .reminder-tomorrow {
-            color: #d88a00;
+        .filter-row {
+            display:
+                flex;
 
-            font-weight: bold;
+            gap:
+                7px;
+
+            flex-wrap:
+                wrap;
+
+            margin-bottom:
+                15px;
         }
 
 
-        .reminder-soon {
-            color: #5b4bdb;
+        .filter-btn {
+            border:
+                1px solid var(--border);
 
-            font-weight: bold;
+            background:
+                white;
+
+            color:
+                var(--muted);
+
+            padding:
+                7px 10px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                10px;
+
+            font-weight:
+                750;
         }
 
 
-        .no-reminders {
-            color: #777;
+        .filter-btn.active {
+            background:
+                var(--primary-light);
+
+            color:
+                var(--primary);
+
+            border-color:
+                #dcd9ff;
         }
 
 
-        .reminder-time {
-            margin-top: 8px;
+        .task-list {
+            display:
+                flex;
 
-            color: #777;
+            flex-direction:
+                column;
 
-            font-size: 14px;
+            gap:
+                10px;
         }
 
 
-        /* =========================
-           TASKS
-        ========================= */
+        .task-card {
+            padding:
+                16px;
 
-        .tasks {
-            display: flex;
+            border:
+                1px solid var(--border);
 
-            flex-direction: column;
+            border-radius:
+                14px;
 
-            gap: 15px;
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            transition:
+                0.2s ease;
         }
 
 
-        .task {
-            background: white;
-
-            padding: 20px;
-
-            border-radius: 12px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 20px;
+        .task-card:hover {
+            border-color:
+                #d9d6ff;
 
             box-shadow:
-                0 4px 15px rgba(0,0,0,0.05);
+                0 8px 25px
+                rgba(27,23,60,0.05);
         }
 
 
-        .task-info {
-            flex: 1;
+        .task-card.completed {
+            opacity:
+                0.58;
         }
 
 
-        .task-info h3 {
-            margin-bottom: 7px;
-
-            color: #29234f;
+        .task-card.completed .task-name {
+            text-decoration:
+                line-through;
         }
 
 
-        .task-info p {
-            color: #777;
+        .task-main {
+            min-width:
+                0;
+
+            flex:
+                1;
         }
 
 
-        .task-right {
-            text-align: right;
+        .task-name {
+            color:
+                var(--dark);
 
-            min-width: 220px;
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
         }
 
 
-        .deadline {
-            font-weight: bold;
+        .task-type {
+            display:
+                inline-block;
 
-            color: #5b4bdb;
+            margin-top:
+                7px;
 
-            margin-bottom: 8px;
+            padding:
+                5px 8px;
 
-            line-height: 1.5;
+            border-radius:
+                999px;
+
+            background:
+                var(--blue-bg);
+
+            color:
+                #4c6fd8;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
         }
 
 
-        .completed {
-            opacity: 0.55;
+        .task-meta {
+            margin-top:
+                8px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.5;
         }
 
 
-        .completed h3 {
-            text-decoration: line-through;
+        .task-side {
+            min-width:
+                155px;
+
+            text-align:
+                right;
         }
 
 
-        .task-buttons {
-            margin-top: 10px;
+        .due-date {
+            color:
+                var(--dark);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
         }
 
 
-        .task-buttons button {
-            border: none;
+        .due-status {
+            display:
+                inline-block;
 
-            padding: 8px 12px;
+            margin-top:
+                6px;
 
-            border-radius: 7px;
+            font-size:
+                10px;
 
-            cursor: pointer;
-
-            margin-left: 5px;
-
-            font-weight: bold;
+            font-weight:
+                800;
         }
 
 
-        .done-btn {
-            background: #dff6e5;
+        .status-red {
+            color:
+                var(--red);
+        }
 
-            color: #218739;
+
+        .status-orange {
+            color:
+                var(--orange);
+        }
+
+
+        .status-purple {
+            color:
+                var(--primary);
+        }
+
+
+        .task-actions {
+            margin-top:
+                10px;
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                6px;
+        }
+
+
+        .action-btn {
+            border:
+                none;
+
+            padding:
+                7px 9px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+        }
+
+
+        .complete-btn {
+            background:
+                var(--green-bg);
+
+            color:
+                var(--green);
         }
 
 
         .delete-btn {
-            background: #ffe1e1;
+            background:
+                var(--red-bg);
 
-            color: #d33;
+            color:
+                var(--red);
         }
 
 
-        /* =========================
-           EMPTY
-        ========================= */
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
 
-        .empty {
-            text-align: center;
+        .empty-state {
+            padding:
+                45px 20px;
 
-            padding: 40px;
+            text-align:
+                center;
 
-            color: #888;
-
-            background: white;
-
-            border-radius: 12px;
+            color:
+                var(--muted);
         }
 
 
-        /* =========================
-           INSTALL MODAL
-        ========================= */
+        .empty-icon {
+            width:
+                52px;
 
-        .modal {
-            display: none;
+            height:
+                52px;
 
-            position: fixed;
+            margin:
+                auto auto 12px;
 
-            inset: 0;
+            border-radius:
+                16px;
 
-            z-index: 3000;
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
 
             background:
-                rgba(0,0,0,0.55);
+                var(--primary-light);
 
-            align-items: center;
+            color:
+                var(--primary);
 
-            justify-content: center;
+            font-size:
+                24px;
 
-            padding: 20px;
+            font-weight:
+                900;
+        }
+
+
+        .empty-state h4 {
+            color:
+                var(--dark);
+
+            margin-bottom:
+                5px;
+
+            font-size:
+                14px;
+        }
+
+
+        .empty-state p {
+            font-size:
+                11px;
+
+            line-height:
+                1.5;
+        }
+
+
+        /* =========================================
+           OVERVIEW
+        ========================================= */
+
+        .overview {
+            margin-top:
+                20px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.3fr
+                1fr;
+
+            gap:
+                20px;
+        }
+
+
+        .progress-box {
+            padding:
+                22px;
+        }
+
+
+        .progress-header {
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            align-items:
+                center;
+        }
+
+
+        .progress-header strong {
+            color:
+                var(--dark);
+
+            font-size:
+                15px;
+        }
+
+
+        .progress-percent {
+            color:
+                var(--primary);
+
+            font-weight:
+                850;
+
+            font-size:
+                13px;
+        }
+
+
+        .progress-bar {
+            width:
+                100%;
+
+            height:
+                10px;
+
+            background:
+                #eeedf5;
+
+            border-radius:
+                999px;
+
+            overflow:
+                hidden;
+
+            margin-top:
+                15px;
+        }
+
+
+        .progress-fill {
+            height:
+                100%;
+
+            width:
+                0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #756dff,
+                    #5b4bdb
+                );
+
+            border-radius:
+                inherit;
+
+            transition:
+                width 0.4s ease;
+        }
+
+
+        .progress-text {
+            margin-top:
+                9px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+        }
+
+
+        .today-box {
+            padding:
+                22px;
+        }
+
+
+        .today-box h3 {
+            color:
+                var(--dark);
+
+            font-size:
+                15px;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        .today-box p {
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            line-height:
+                1.6;
+        }
+
+
+        .today-number {
+            display:
+                block;
+
+            color:
+                var(--primary);
+
+            font-size:
+                32px;
+
+            font-weight:
+                850;
+
+            margin-top:
+                3px;
+        }
+
+
+        /* =========================================
+           INSTALL MODAL
+        ========================================= */
+
+        .modal {
+            display:
+                none;
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                3000;
+
+            background:
+                rgba(18,16,35,0.58);
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                20px;
+
+            backdrop-filter:
+                blur(5px);
         }
 
 
         .modal.show {
-            display: flex;
+            display:
+                flex;
         }
 
 
         .modal-content {
-            width: 100%;
+            width:
+                min(
+                    450px,
+                    100%
+                );
 
-            max-width: 450px;
+            background:
+                white;
 
-            background: white;
+            border-radius:
+                22px;
 
-            padding: 30px;
+            padding:
+                28px;
 
-            border-radius: 18px;
-
-            text-align: center;
+            text-align:
+                center;
 
             box-shadow:
-                0 20px 60px rgba(0,0,0,0.25);
+                0 30px 80px
+                rgba(0,0,0,0.25);
         }
 
 
         .modal-logo {
-            width: 75px;
+            width:
+                70px;
 
-            height: 75px;
+            height:
+                70px;
 
-            border-radius: 18px;
+            margin:
+                0 auto 15px;
 
-            background: #5b4bdb;
+            border-radius:
+                20px;
 
-            color: white;
+            background:
+                linear-gradient(
+                    135deg,
+                    #7b72ff,
+                    #635bff 55%,
+                    #453cc5
+                );
 
-            display: flex;
+            color:
+                white;
 
-            align-items: center;
+            display:
+                flex;
 
-            justify-content: center;
+            align-items:
+                center;
 
-            margin: 0 auto 15px;
+            justify-content:
+                center;
 
-            font-size: 26px;
+            font-size:
+                27px;
 
-            font-weight: bold;
+            font-weight:
+                900;
 
-            letter-spacing: -1px;
+            letter-spacing:
+                -4px;
+
+            box-shadow:
+                0 12px 25px
+                rgba(99,91,255,0.28);
         }
 
 
         .modal-content h2 {
-            color: #29234f;
+            color:
+                var(--dark);
 
-            margin-bottom: 10px;
+            font-size:
+                21px;
+
+            margin-bottom:
+                8px;
         }
 
 
         .modal-content > p {
-            color: #666;
+            color:
+                var(--muted);
 
-            line-height: 1.6;
+            font-size:
+                12px;
 
-            margin-bottom: 18px;
+            line-height:
+                1.6;
+
+            margin-bottom:
+                15px;
         }
 
 
         .install-steps {
-            background: #f5f6fb;
+            text-align:
+                left;
 
-            padding: 18px;
+            background:
+                #f8f8fc;
 
-            border-radius: 12px;
+            border:
+                1px solid var(--border);
 
-            text-align: left;
+            border-radius:
+                14px;
 
-            margin-bottom: 20px;
+            padding:
+                17px;
+
+            margin-bottom:
+                18px;
         }
 
 
         .install-steps p {
-            color: #444;
+            color:
+                var(--text);
 
-            line-height: 1.6;
+            font-size:
+                11px;
 
-            margin-bottom: 10px;
+            line-height:
+                1.6;
+
+            margin-bottom:
+                10px;
         }
 
 
         .install-steps p:last-child {
-            margin-bottom: 0;
+            margin-bottom:
+                0;
         }
 
 
-        .close-modal {
-            border: none;
+        .close-btn {
+            border:
+                none;
 
-            background: #eee;
+            background:
+                #ededf3;
 
-            color: #333;
+            color:
+                var(--dark);
 
-            padding: 10px 18px;
+            padding:
+                10px 18px;
 
-            border-radius: 8px;
+            border-radius:
+                9px;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
-            font-weight: bold;
+            font-weight:
+                800;
         }
 
 
-        /* =========================
+        /* =========================================
+           TOAST
+        ========================================= */
+
+        .toast {
+            position:
+                fixed;
+
+            left:
+                50%;
+
+            bottom:
+                25px;
+
+            transform:
+                translate(-50%, 20px);
+
+            opacity:
+                0;
+
+            pointer-events:
+                none;
+
+            z-index:
+                4000;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            padding:
+                12px 16px;
+
+            border-radius:
+                11px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0,0,0,0.20);
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .toast.show {
+            opacity:
+                1;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+
+        /* =========================================
            FOOTER
-        ========================= */
+        ========================================= */
 
         footer {
-            background: #29234f;
+            background:
+                var(--dark);
 
-            color: white;
+            color:
+                white;
 
-            text-align: center;
+            margin-top:
+                0;
 
-            padding: 35px;
-
-            margin-top: 40px;
+            padding:
+                40px 20px;
         }
 
 
-        footer p {
-            color: #ccc;
+        .footer-container {
+            width:
+                min(
+                    1180px,
+                    100%
+                );
 
-            margin-top: 8px;
+            margin:
+                auto;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
         }
 
 
-        /* =========================
+        .footer-brand {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+        }
+
+
+        .footer-brand .brand-icon {
+            width:
+                38px;
+
+            height:
+                38px;
+        }
+
+
+        .footer-brand-name {
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+        }
+
+
+        .footer-text {
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size:
+                11px;
+
+            margin-top:
+                5px;
+        }
+
+
+        /* =========================================
            MOBILE
-        ========================= */
+        ========================================= */
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1000px) {
+
+            .hero-container {
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .hero-preview {
+                max-width:
+                    600px;
+
+                width:
+                    100%;
+
+                margin:
+                    auto;
+            }
+
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .content-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .overview {
+                grid-template-columns:
+                    1fr;
+            }
+
 
             .form-grid {
                 grid-template-columns:
-                    1fr
-                    1fr
                     1fr;
             }
 
         }
 
 
-        @media (max-width: 800px) {
+        @media (max-width: 700px) {
 
-            nav {
-                flex-direction: column;
+            .nav-container {
+                width:
+                    calc(100% - 24px);
 
-                gap: 15px;
-
-                padding:
-                    15px 5%;
+                min-height:
+                    68px;
             }
 
 
             .nav-links {
-                flex-wrap: wrap;
+                gap:
+                    10px;
+            }
 
-                justify-content: center;
 
-                gap: 12px;
+            .nav-links a {
+                display:
+                    none;
+            }
+
+
+            .brand-name {
+                font-size:
+                    17px;
+            }
+
+
+            .brand-icon {
+                width:
+                    40px;
+
+                height:
+                    40px;
+            }
+
+
+            .install-btn {
+                font-size:
+                    11px;
+
+                padding:
+                    9px 11px;
             }
 
 
             .hero {
-                padding: 70px 5%;
+                padding:
+                    55px 12px 45px;
             }
 
 
             .hero h1 {
-                font-size: 40px;
+                letter-spacing:
+                    -2px;
             }
 
 
-            .hero p {
-                font-size: 17px;
+            .hero-description {
+                font-size:
+                    15px;
             }
 
 
-            .dashboard {
-                padding: 50px 5%;
+            .hero-buttons {
+                flex-direction:
+                    column;
             }
 
+
+            .primary-btn,
+            .secondary-btn {
+                width:
+                    100%;
+            }
+
+
+            .preview-card {
+                padding:
+                    16px;
+
+                transform:
+                    none;
+            }
+
+
+            .app-section {
+                padding:
+                    0 12px 45px;
+            }
+
+
+            .app-container {
+                padding:
+                    24px 20px;
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .app-button {
+                width:
+                    100%;
+            }
+
+
+            .main {
+                padding:
+                    0 12px 55px;
+            }
+
+
+            .dashboard-header {
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .dashboard-header h2 {
+                font-size:
+                    27px;
+            }
+
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap:
+                    10px;
+            }
+
+
+            .stat-card {
+                padding:
+                    17px;
+            }
+
+
+            .stat-number {
+                font-size:
+                    28px;
+            }
+
+
+            .two-fields {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .task-card {
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .task-side {
+                width:
+                    100%;
+
+                text-align:
+                    left;
+
+                min-width:
+                    0;
+            }
+
+
+            .task-actions {
+                justify-content:
+                    flex-start;
+            }
+
+
+            .footer-container {
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
 
             .stats {
                 grid-template-columns:
@@ -910,32 +2714,21 @@
             }
 
 
-            .form-grid {
-                grid-template-columns:
-                    1fr;
+            .nav-container {
+                gap:
+                    10px;
             }
 
 
-            .task {
-                flex-direction: column;
+            .install-btn {
+                max-width:
+                    120px;
 
-                align-items: flex-start;
-            }
+                overflow:
+                    hidden;
 
-
-            .task-right {
-                text-align: left;
-
-                min-width: 0;
-
-                width: 100%;
-            }
-
-
-            .task-buttons button {
-                margin-left: 0;
-
-                margin-right: 5px;
+                text-overflow:
+                    ellipsis;
             }
 
         }
@@ -948,378 +2741,825 @@
 <body>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- =========================================
+     NAVBAR
+========================================= -->
 
-<nav>
+<header class="navbar">
+
+    <div class="nav-container">
 
 
-    <div class="logo">
+        <a
+            href="#home"
+            class="brand"
+        >
 
-        <div class="logo-icon">
-            DB
+            <div class="brand-icon">
+
+                <span class="brand-db">
+                    DB
+                </span>
+
+            </div>
+
+
+            <span class="brand-name">
+                Deadline Buddy
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#tasks">
+                My Tasks
+            </a>
+
+
+            <button
+                id="installButton"
+                class="install-btn"
+                type="button"
+                onclick="installApp()"
+            >
+                📲 Install App
+            </button>
+
         </div>
 
-        Deadline Buddy
 
     </div>
 
-
-    <div class="nav-links">
-
-        <a href="#home">
-            Home
-        </a>
+</header>
 
 
-        <a href="#dashboard">
-            Dashboard
-        </a>
-
-
-        <a href="#tasks">
-            My Tasks
-        </a>
-
-
-        <button
-            id="installButton"
-            class="install-btn"
-            type="button"
-            onclick="installApp()"
-        >
-            📲 Install App
-        </button>
-
-    </div>
-
-
-</nav>
-
-
-<!-- =========================
+<!-- =========================================
      HERO
-========================= -->
+========================================= -->
 
 <section
     class="hero"
     id="home"
 >
 
-
-    <div class="hero-content">
-
-
-        <h1>
-            Never Miss a
-            <span>Deadline.</span>
-        </h1>
+    <div class="hero-container">
 
 
-        <p>
+        <div>
 
-            Students have assignments, exams,
-            projects, requirements, and personal
-            responsibilities happening at the same time.
+            <div class="eyebrow">
 
-            <br><br>
+                <span class="eyebrow-dot"></span>
 
-            <strong>Deadline Buddy</strong>
-            helps you organize everything in one place
-            so you can stay on track, reduce stress,
-            and get your schoolwork done on time.
+                Student Productivity
 
-        </p>
+            </div>
 
 
-        <a href="#dashboard">
+            <h1>
 
-            <button
-                class="btn"
-                type="button"
-            >
-                Get Started
-            </button>
+                Stay ahead of
+                <span>
+                    every deadline.
+                </span>
 
-        </a>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Keep assignments, exams, projects,
+                requirements, and personal tasks
+                organized in one simple place.
+
+                Deadline Buddy helps you know
+                what to do, when it's due,
+                and when you want to be reminded.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#dashboard"
+                    class="primary-btn"
+                >
+                    Open My Dashboard
+                    →
+                </a>
+
+
+                <button
+                    class="secondary-btn"
+                    type="button"
+                    onclick="document.getElementById('taskName').focus(); document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})"
+                >
+                    + Add a Task
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PREVIEW -->
+
+        <div class="hero-preview">
+
+            <div class="preview-glow"></div>
+
+
+            <div class="preview-card">
+
+
+                <div class="preview-top">
+
+                    <div class="preview-title">
+                        My Dashboard
+                    </div>
+
+                    <div class="preview-mini-btn">
+                        Deadline Buddy
+                    </div>
+
+                </div>
+
+
+                <div class="preview-stat-row">
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Tasks
+                        </small>
+
+                        <strong>
+                            8
+                        </strong>
+
+                    </div>
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Pending
+                        </small>
+
+                        <strong>
+                            5
+                        </strong>
+
+                    </div>
+
+
+                    <div class="preview-stat">
+
+                        <small>
+                            Done
+                        </small>
+
+                        <strong>
+                            3
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="preview-task">
+
+                    <div class="preview-task-top">
+
+                        <div class="preview-task-name">
+                            Research Paper
+                        </div>
+
+                        <div class="preview-badge">
+                            Tomorrow
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-task-info">
+                        Assignment · Due 11:59 PM
+                    </div>
+
+                </div>
+
+
+                <div class="preview-task">
+
+                    <div class="preview-task-top">
+
+                        <div class="preview-task-name">
+                            History Exam
+                        </div>
+
+                        <div class="preview-badge">
+                            Reminder
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-task-info">
+                        Exam · Remind me at 7:00 PM
+                    </div>
+
+                </div>
+
+
+                <div class="preview-task">
+
+                    <div class="preview-task-top">
+
+                        <div class="preview-task-name">
+                            Group Presentation
+                        </div>
+
+                        <div
+                            class="preview-badge"
+                            style="
+                                background:#fff6e4;
+                                color:#d88a16;
+                            "
+                        >
+                            In 3 days
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-task-info">
+                        Project · Due October 1
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
 
 
     </div>
 
+</section>
+
+
+<!-- =========================================
+     INSTALL APP BANNER
+========================================= -->
+
+<section class="app-section">
+
+    <div class="app-container">
+
+
+        <div class="app-copy">
+
+            <h2>
+                Take Deadline Buddy with you.
+            </h2>
+
+            <p>
+                Install it on supported phones, tablets,
+                and computers for faster access.
+            </p>
+
+        </div>
+
+
+        <button
+            class="app-button"
+            type="button"
+            onclick="installApp()"
+        >
+            📲 Install Deadline Buddy
+        </button>
+
+
+    </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================
      DASHBOARD
-========================= -->
+========================================= -->
 
-<section
-    class="dashboard"
+<main
+    class="main"
     id="dashboard"
 >
 
+    <div class="main-container">
 
-    <div class="section-title">
 
-        <h2>
-            My Dashboard
-        </h2>
+        <div class="dashboard-header">
 
-        <p>
-            Keep track of everything you need to accomplish.
-        </p>
+            <div>
 
-    </div>
-
-
-    <!-- STATS -->
-
-    <div class="stats">
-
-
-        <div class="stat-card">
-
-            <h3>
-                Total Tasks
-            </h3>
-
-            <strong id="totalTasks">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <h3>
-                Pending Tasks
-            </h3>
-
-            <strong id="pendingTasks">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <h3>
-                Completed
-            </h3>
-
-            <strong id="completedTasks">
-                0
-            </strong>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =========================
-         ADD TASK
-    ========================= -->
-
-    <div class="add-task">
-
-
-        <h2>
-            ➕ Add a New Task
-        </h2>
-
-
-        <p>
-            Set the deadline and choose exactly when you want to get reminded.
-        </p>
-
-
-        <div class="form-grid">
-
-
-            <input
-                type="text"
-                id="taskName"
-                placeholder="Task name"
-                maxlength="150"
-            >
-
-
-            <select
-                id="taskType"
-            >
-
-                <option value="Assignment">
-                    Assignment
-                </option>
-
-                <option value="Exam">
-                    Exam
-                </option>
-
-                <option value="Project">
-                    Project
-                </option>
-
-                <option value="Requirement">
-                    Requirement
-                </option>
-
-                <option value="Personal">
-                    Personal
-                </option>
-
-            </select>
-
-
-            <input
-                type="date"
-                id="taskDate"
-                title="Deadline date"
-            >
-
-
-            <input
-                type="time"
-                id="taskTime"
-                title="Deadline time"
-            >
-
-
-            <div class="reminder-input">
-
-                <label
-                    for="reminderTime"
-                >
-                    🔔 Set time to get reminded
-                </label>
-
-
-                <input
-                    type="time"
-                    id="reminderTime"
-                >
-
-            </div>
-
-
-            <button
-                class="btn"
-                type="button"
-                onclick="addTask()"
-            >
-                Add Task
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =========================
-         REMINDERS
-    ========================= -->
-
-    <div class="reminders">
-
-
-        <div class="reminder-box">
-
-
-            <h2>
-                🔔 Deadline Reminders
-            </h2>
-
-
-            <div
-                id="notificationStatus"
-                class="notification-status"
-            >
-                🔕 Notifications Not Enabled
-            </div>
-
-
-            <br>
-
-
-            <button
-                class="btn"
-                type="button"
-                onclick="enableNotifications()"
-            >
-                Enable Notifications
-            </button>
-
-
-            <div
-                id="reminderList"
-                style="margin-top:20px;"
-            >
-
-                <p class="no-reminders">
-                    No upcoming reminders.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =========================
-         MY TASKS
-    ========================= -->
-
-    <div id="tasks">
-
-
-        <div class="section-title">
-
-            <h2>
-                My Tasks
-            </h2>
-
-        </div>
-
-
-        <div
-            class="tasks"
-            id="taskList"
-        >
-
-            <div class="empty">
-
-                <h3>
-                    No tasks yet
-                </h3>
+                <h2>
+                    My Dashboard
+                </h2>
 
                 <p>
-                    Add your first task above.
+                    Everything you need to stay organized.
                 </p>
 
             </div>
+
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Total Tasks
+                </span>
+
+                <strong
+                    class="stat-number"
+                    id="totalTasks"
+                >
+                    0
+                </strong>
+
+                <span class="stat-detail">
+                    All your tasks
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Pending
+                </span>
+
+                <strong
+                    class="stat-number"
+                    id="pendingTasks"
+                >
+                    0
+                </strong>
+
+                <span class="stat-detail">
+                    Still to do
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Completed
+                </span>
+
+                <strong
+                    class="stat-number"
+                    id="completedTasks"
+                >
+                    0
+                </strong>
+
+                <span class="stat-detail">
+                    Finished tasks
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Due Today
+                </span>
+
+                <strong
+                    class="stat-number"
+                    id="todayTasks"
+                >
+                    0
+                </strong>
+
+                <span class="stat-detail">
+                    Need attention
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="content-grid">
+
+
+            <!-- LEFT -->
+
+            <div>
+
+
+                <!-- ADD TASK -->
+
+                <section class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Add a New Task
+                            </h3>
+
+                            <p>
+                                Create a deadline and choose when to be reminded.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="task-form">
+
+
+                        <div class="field">
+
+                            <label for="taskName">
+                                Task Name
+                            </label>
+
+                            <input
+                                id="taskName"
+                                type="text"
+                                maxlength="150"
+                                placeholder="e.g. Finish research paper"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="taskType">
+                                Task Type
+                            </label>
+
+                            <select
+                                id="taskType"
+                            >
+
+                                <option value="Assignment">
+                                    Assignment
+                                </option>
+
+                                <option value="Exam">
+                                    Exam
+                                </option>
+
+                                <option value="Project">
+                                    Project
+                                </option>
+
+                                <option value="Requirement">
+                                    Requirement
+                                </option>
+
+                                <option value="Personal">
+                                    Personal
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="two-fields">
+
+
+                            <div class="field">
+
+                                <label for="taskDate">
+                                    Deadline Date
+                                </label>
+
+                                <input
+                                    id="taskDate"
+                                    type="date"
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label for="taskTime">
+                                    Deadline Time
+                                </label>
+
+                                <input
+                                    id="taskTime"
+                                    type="time"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="reminderTime">
+                                🔔 Set time to get reminded
+                            </label>
+
+                            <input
+                                id="reminderTime"
+                                type="time"
+                            >
+
+                        </div>
+
+
+                        <button
+                            class="add-task-btn"
+                            type="button"
+                            onclick="addTask()"
+                        >
+                            + Add Task
+                        </button>
+
+
+                        <!-- NOTIFICATIONS -->
+
+                        <div class="notification-wrap">
+
+
+                            <div class="notification-top">
+
+                                <span class="notification-title">
+                                    Browser Notifications
+                                </span>
+
+
+                                <span
+                                    id="notificationStatus"
+                                    class="notification-status"
+                                >
+                                    🔕 Not Enabled
+                                </span>
+
+                            </div>
+
+
+                            <p class="notification-text">
+
+                                Allow notifications so Deadline Buddy
+                                can show reminder popups with your task message.
+
+                            </p>
+
+
+                            <button
+                                class="notification-btn"
+                                type="button"
+                                onclick="enableNotifications()"
+                            >
+                                Enable Notifications
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- PROGRESS -->
+
+                <div class="overview">
+
+
+                    <section class="panel">
+
+                        <div class="progress-box">
+
+
+                            <div class="progress-header">
+
+                                <strong>
+                                    Task Progress
+                                </strong>
+
+                                <span
+                                    id="progressPercent"
+                                    class="progress-percent"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress-bar">
+
+                                <div
+                                    id="progressFill"
+                                    class="progress-fill"
+                                ></div>
+
+                            </div>
+
+
+                            <p
+                                id="progressText"
+                                class="progress-text"
+                            >
+                                No completed tasks yet.
+                            </p>
+
+
+                        </div>
+
+                    </section>
+
+
+                    <section class="panel">
+
+                        <div class="today-box">
+
+                            <h3>
+                                Today's Focus
+                            </h3>
+
+
+                            <span
+                                id="todayNumber"
+                                class="today-number"
+                            >
+                                0
+                            </span>
+
+
+                            <p id="todayText">
+                                No tasks due today.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <section
+                class="panel"
+                id="tasks"
+            >
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            My Tasks
+                        </h3>
+
+                        <p>
+                            Your deadlines in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="task-panel-body">
+
+
+                    <div class="filter-row">
+
+
+                        <button
+                            class="filter-btn active"
+                            data-filter="all"
+                            onclick="setFilter('all')"
+                        >
+                            All
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="pending"
+                            onclick="setFilter('pending')"
+                        >
+                            Pending
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="completed"
+                            onclick="setFilter('completed')"
+                        >
+                            Completed
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="Assignment"
+                            onclick="setFilter('Assignment')"
+                        >
+                            Assignments
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="Exam"
+                            onclick="setFilter('Exam')"
+                        >
+                            Exams
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="Project"
+                            onclick="setFilter('Project')"
+                        >
+                            Projects
+                        </button>
+
+
+                    </div>
+
+
+                    <div
+                        id="taskList"
+                        class="task-list"
+                    ></div>
+
+
+                </div>
+
+
+            </section>
+
 
         </div>
 
 
     </div>
 
+</main>
 
-</section>
 
-
-<!-- =========================
+<!-- =========================================
      INSTALL MODAL
-========================= -->
+========================================= -->
 
 <div
     id="installModal"
@@ -1329,8 +3569,6 @@
 
     <div class="modal-content">
 
-
-        <!-- OLD DB LOGO -->
 
         <div class="modal-logo">
             DB
@@ -1343,19 +3581,18 @@
 
 
         <p id="installInstructions">
-            Install Deadline Buddy on your device for quick access.
+            Install Deadline Buddy for quick access.
         </p>
 
 
         <div
             id="installSteps"
             class="install-steps"
-        >
-        </div>
+        ></div>
 
 
         <button
-            class="close-modal"
+            class="close-btn"
             type="button"
             onclick="closeInstallModal()"
         >
@@ -1365,35 +3602,66 @@
 
     </div>
 
-
 </div>
 
 
-<!-- =========================
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- =========================================
      FOOTER
-========================= -->
+========================================= -->
 
 <footer>
 
-
-    <h2>
-        Deadline Buddy
-    </h2>
+    <div class="footer-container">
 
 
-    <p>
-        Helping students stay organized,
-        one deadline at a time.
-    </p>
+        <div>
+
+            <div class="footer-brand">
 
 
-    <br>
+                <div class="brand-icon">
+
+                    <span class="brand-db">
+                        DB
+                    </span>
+
+                </div>
 
 
-    <p>
-        © 2026 Deadline Buddy
-    </p>
+                <span class="footer-brand-name">
+                    Deadline Buddy
+                </span>
 
+
+            </div>
+
+
+            <p class="footer-text">
+
+                Helping students stay organized,
+                one deadline at a time.
+
+            </p>
+
+        </div>
+
+
+        <p class="footer-text">
+            © 2026 Deadline Buddy
+        </p>
+
+
+    </div>
 
 </footer>
 
@@ -1402,11 +3670,14 @@
 
 
 /* =====================================================
-   TASK STORAGE
+   STORAGE
 ===================================================== */
 
-let tasks =
-    loadTasks();
+let tasks = loadTasks();
+
+let currentFilter = "all";
+
+let deferredInstallPrompt = null;
 
 
 function loadTasks() {
@@ -1431,17 +3702,35 @@ function loadTasks() {
 
     }
 
-    catch (
-        error
-    ) {
+    catch (error) {
 
-        console.error(
-            "Unable to load tasks:",
-            error
-        );
-
+        console.error(error);
 
         return [];
+
+    }
+
+}
+
+
+function saveTasks() {
+
+    try {
+
+        localStorage.setItem(
+            "deadlineBuddyTasks",
+            JSON.stringify(tasks)
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Unable to save this task."
+        );
 
     }
 
@@ -1452,31 +3741,31 @@ function loadTasks() {
    ELEMENTS
 ===================================================== */
 
-const taskNameInput =
+const taskName =
     document.getElementById(
         "taskName"
     );
 
 
-const taskTypeInput =
+const taskType =
     document.getElementById(
         "taskType"
     );
 
 
-const taskDateInput =
+const taskDate =
     document.getElementById(
         "taskDate"
     );
 
 
-const taskTimeInput =
+const taskTime =
     document.getElementById(
         "taskTime"
     );
 
 
-const reminderTimeInput =
+const reminderTime =
     document.getElementById(
         "reminderTime"
     );
@@ -1485,12 +3774,6 @@ const reminderTimeInput =
 const taskList =
     document.getElementById(
         "taskList"
-    );
-
-
-const reminderList =
-    document.getElementById(
-        "reminderList"
     );
 
 
@@ -1506,26 +3789,8 @@ const installButton =
     );
 
 
-const installModal =
-    document.getElementById(
-        "installModal"
-    );
-
-
-const installInstructions =
-    document.getElementById(
-        "installInstructions"
-    );
-
-
-const installSteps =
-    document.getElementById(
-        "installSteps"
-    );
-
-
 /* =====================================================
-   DEVICE DETECTION
+   DEVICE
 ===================================================== */
 
 const isIOS =
@@ -1539,7 +3804,7 @@ const isIOS =
     );
 
 
-function isStandaloneMode() {
+function isInstalled() {
 
     return (
         window.matchMedia(
@@ -1554,10 +3819,6 @@ function isStandaloneMode() {
 /* =====================================================
    PWA INSTALL
 ===================================================== */
-
-let deferredInstallPrompt =
-    null;
-
 
 window.addEventListener(
     "beforeinstallprompt",
@@ -1581,6 +3842,10 @@ window.addEventListener(
 
         setInstalledButton();
 
+        showToast(
+            "Deadline Buddy was installed!"
+        );
+
     }
 );
 
@@ -1588,13 +3853,11 @@ window.addEventListener(
 function setInstalledButton() {
 
     installButton.textContent =
-        "✅ App Installed";
-
+        "✅ Installed";
 
     installButton.classList.add(
         "installed"
     );
-
 
     installButton.disabled =
         true;
@@ -1602,28 +3865,11 @@ function setInstalledButton() {
 }
 
 
-function initializeInstallButton() {
-
-    if (
-        isStandaloneMode()
-    ) {
-
-        setInstalledButton();
-
-    }
-
-}
-
-
-/* =====================================================
-   INSTALL APP
-===================================================== */
-
 async function installApp() {
 
 
     if (
-        isStandaloneMode()
+        isInstalled()
     ) {
 
         return;
@@ -1631,7 +3877,10 @@ async function installApp() {
     }
 
 
-    /* SUPPORTED INSTALL PROMPT */
+    /*
+     * Native install prompt
+     * where supported.
+     */
 
     if (
         deferredInstallPrompt
@@ -1643,12 +3892,9 @@ async function installApp() {
 
         }
 
-        catch (
-            error
-        ) {
+        catch (error) {
 
             console.error(
-                "Install prompt error:",
                 error
             );
 
@@ -1659,7 +3905,9 @@ async function installApp() {
     }
 
 
-    /* IPHONE / IPAD */
+    /*
+     * iPhone / iPad.
+     */
 
     if (
         isIOS
@@ -1674,7 +3922,9 @@ async function installApp() {
     }
 
 
-    /* OTHER DEVICES */
+    /*
+     * Other browsers/devices.
+     */
 
     showInstallInstructions(
         "other"
@@ -1683,25 +3933,38 @@ async function installApp() {
 }
 
 
-/* =====================================================
-   INSTALL INSTRUCTIONS
-===================================================== */
-
 function showInstallInstructions(
     device
 ) {
 
+    const modal =
+        document.getElementById(
+            "installModal"
+        );
+
+
+    const instructions =
+        document.getElementById(
+            "installInstructions"
+        );
+
+
+    const steps =
+        document.getElementById(
+            "installSteps"
+        );
+
 
     if (
-        device === "ios"
+        device ===
+        "ios"
     ) {
 
-
-        installInstructions.textContent =
+        instructions.textContent =
             "Add Deadline Buddy to your iPhone or iPad Home Screen.";
 
 
-        installSteps.innerHTML = `
+        steps.innerHTML = `
 
             <p>
                 <strong>1.</strong>
@@ -1725,7 +3988,7 @@ function showInstallInstructions(
                 <strong>4.</strong>
                 Keep
                 <strong>Open as Web App</strong>
-                turned on.
+                enabled.
             </p>
 
             <p>
@@ -1740,16 +4003,15 @@ function showInstallInstructions(
 
     else {
 
-
-        installInstructions.textContent =
+        instructions.textContent =
             "Install Deadline Buddy from your browser.";
 
 
-        installSteps.innerHTML = `
+        steps.innerHTML = `
 
             <p>
                 <strong>Android:</strong>
-                Open your browser menu and choose
+                Open the browser menu and choose
                 <strong>Install app</strong>
                 or
                 <strong>Add to Home screen</strong>.
@@ -1766,41 +4028,78 @@ function showInstallInstructions(
     }
 
 
-    installModal.classList.add(
+    modal.classList.add(
         "show"
     );
 
 }
 
-
-/* =====================================================
-   CLOSE INSTALL MODAL
-===================================================== */
 
 function closeInstallModal() {
 
-    installModal.classList.remove(
-        "show"
+    document
+        .getElementById(
+            "installModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+document
+    .getElementById(
+        "installModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "installModal"
+            ) {
+
+                closeInstallModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   DATE HELPERS
+===================================================== */
+
+function createDateTime(
+    date,
+    time
+) {
+
+    return new Date(
+        `${date}T${time}:00`
     );
 
 }
 
 
-installModal.addEventListener(
-    "click",
-    event => {
+function todayStart() {
 
-        if (
-            event.target ===
-            installModal
-        ) {
+    const date =
+        new Date();
 
-            closeInstallModal();
+    date.setHours(
+        0,
+        0,
+        0,
+        0
+    );
 
-        }
+    return date;
 
-    }
-);
+}
 
 
 /* =====================================================
@@ -1811,25 +4110,25 @@ function addTask() {
 
 
     const name =
-        taskNameInput
+        taskName
             .value
             .trim();
 
 
     const type =
-        taskTypeInput.value;
+        taskType.value;
 
 
     const date =
-        taskDateInput.value;
+        taskDate.value;
 
 
     const time =
-        taskTimeInput.value;
+        taskTime.value;
 
 
-    const reminderTime =
-        reminderTimeInput.value;
+    const reminder =
+        reminderTime.value;
 
 
     if (
@@ -1837,8 +4136,8 @@ function addTask() {
         !date
     ) {
 
-        alert(
-            "Please enter a task name and deadline date."
+        showToast(
+            "Please enter a task and deadline date."
         );
 
         return;
@@ -1859,7 +4158,7 @@ function addTask() {
         )
     ) {
 
-        alert(
+        showToast(
             "Please enter a valid deadline."
         );
 
@@ -1873,7 +4172,7 @@ function addTask() {
         new Date()
     ) {
 
-        alert(
+        showToast(
             "Please choose a future deadline."
         );
 
@@ -1883,25 +4182,16 @@ function addTask() {
 
 
     if (
-        reminderTime
+        reminder
     ) {
 
 
-        const reminder =
-            createDateTime(
-                date,
-                reminderTime
-            );
-
-
         if (
-            Number.isNaN(
-                reminder.getTime()
-            )
+            !time
         ) {
 
-            alert(
-                "Please enter a valid reminder time."
+            showToast(
+                "Set a deadline time before setting a reminder time."
             );
 
             return;
@@ -1909,13 +4199,20 @@ function addTask() {
         }
 
 
+        const reminderDate =
+            createDateTime(
+                date,
+                reminder
+            );
+
+
         if (
-            reminder >=
+            reminderDate >=
             deadline
         ) {
 
-            alert(
-                "Your reminder time must be earlier than the deadline."
+            showToast(
+                "The reminder must be earlier than the deadline."
             );
 
             return;
@@ -1924,11 +4221,11 @@ function addTask() {
 
 
         if (
-            reminder <=
+            reminderDate <=
             new Date()
         ) {
 
-            alert(
+            showToast(
                 "Please choose a future reminder time."
             );
 
@@ -1942,7 +4239,7 @@ function addTask() {
     const task = {
 
         id:
-            generateTaskId(),
+            generateId(),
 
         name:
             name,
@@ -1957,10 +4254,13 @@ function addTask() {
             time,
 
         reminderTime:
-            reminderTime,
+            reminder,
 
         completed:
-            false
+            false,
+
+        createdAt:
+            Date.now()
 
     };
 
@@ -1973,25 +4273,35 @@ function addTask() {
     saveTasks();
 
 
-    clearTaskForm();
+    clearForm();
 
 
     displayTasks();
 
 
-    updateReminders();
+    updateDashboard();
 
 
-    scrollToTasks();
+    showToast(
+        "Task added successfully!"
+    );
+
+
+    if (
+        "Notification"
+        in window &&
+        Notification.permission ===
+            "granted"
+    ) {
+
+        showNotificationPreview();
+
+    }
 
 }
 
 
-/* =====================================================
-   GENERATE ID
-===================================================== */
-
-function generateTaskId() {
+function generateId() {
 
     return (
         Date.now().toString() +
@@ -2003,61 +4313,19 @@ function generateTaskId() {
 }
 
 
-/* =====================================================
-   CREATE DATE TIME
-===================================================== */
+function clearForm() {
 
-function createDateTime(
-    date,
-    time
-) {
-
-    return new Date(
-        `${date}T${time}:00`
-    );
-
-}
-
-
-/* =====================================================
-   CLEAR FORM
-===================================================== */
-
-function clearTaskForm() {
-
-    taskNameInput.value =
+    taskName.value =
         "";
 
-    taskDateInput.value =
+    taskDate.value =
         "";
 
-    taskTimeInput.value =
+    taskTime.value =
         "";
 
-    reminderTimeInput.value =
+    reminderTime.value =
         "";
-
-}
-
-
-/* =====================================================
-   SCROLL TO TASKS
-===================================================== */
-
-function scrollToTasks() {
-
-    const section =
-        document.getElementById(
-            "tasks"
-        );
-
-
-    section.scrollIntoView({
-        behavior:
-            "smooth",
-        block:
-            "start"
-    });
 
 }
 
@@ -2069,24 +4337,41 @@ function scrollToTasks() {
 function displayTasks() {
 
 
+    const visibleTasks =
+        getFilteredTasks();
+
+
     taskList.innerHTML =
         "";
 
 
     if (
-        tasks.length === 0
+        visibleTasks.length ===
+        0
     ) {
 
         taskList.innerHTML = `
 
-            <div class="empty">
+            <div class="empty-state">
 
-                <h3>
-                    No tasks yet
-                </h3>
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h4>
+                    ${
+                        tasks.length === 0
+                        ? "No tasks yet"
+                        : "No tasks found"
+                    }
+                </h4>
 
                 <p>
-                    Add your first task above.
+                    ${
+                        tasks.length === 0
+                        ? "Add your first task to start organizing your deadlines."
+                        : "Try changing the filter."
+                    }
                 </p>
 
             </div>
@@ -2094,191 +4379,290 @@ function displayTasks() {
         `;
 
 
-        updateStats();
-
+        updateDashboard();
 
         return;
 
     }
 
 
-    tasks.sort(
-        (
-            a,
-            b
-        ) => {
+    visibleTasks.forEach(
+        task => {
 
-            const dateA =
-                createDateTime(
-                    a.date,
-                    a.time || "23:59"
-                );
-
-
-            const dateB =
-                createDateTime(
-                    b.date,
-                    b.time || "23:59"
-                );
-
-
-            return (
-                dateA -
-                dateB
+            taskList.appendChild(
+                createTaskCard(
+                    task
+                )
             );
 
         }
     );
 
 
-    tasks.forEach(
-        task => {
+    updateDashboard();
+
+}
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+/* =====================================================
+   FILTER
+===================================================== */
+
+function setFilter(
+    filter
+) {
+
+    currentFilter =
+        filter;
 
 
-            div.className =
-                "task";
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            button => {
 
-
-            if (
-                task.completed
-            ) {
-
-                div.classList.add(
-                    "completed"
+                button.classList.toggle(
+                    "active",
+                    button.dataset.filter ===
+                        filter
                 );
 
             }
+        );
 
 
-            const status =
-                getDeadlineStatus(
-                    task
+    displayTasks();
+
+}
+
+
+function getFilteredTasks() {
+
+    const sorted =
+        [...tasks].sort(
+            (
+                a,
+                b
+            ) => {
+
+                const dateA =
+                    createDateTime(
+                        a.date,
+                        a.time ||
+                            "23:59"
+                    );
+
+
+                const dateB =
+                    createDateTime(
+                        b.date,
+                        b.time ||
+                            "23:59"
+                    );
+
+
+                return (
+                    dateA -
+                    dateB
                 );
 
-
-            div.innerHTML = `
-
-                <div class="task-info">
-
-                    <h3>
-                        ${escapeHtml(
-                            task.name
-                        )}
-                    </h3>
-
-                    <p>
-                        ${escapeHtml(
-                            task.type
-                        )}
-                    </p>
-
-                </div>
+            }
+        );
 
 
-                <div class="task-right">
+    if (
+        currentFilter ===
+        "all"
+    ) {
 
-                    <div class="deadline">
+        return sorted;
 
-                        Due:
-                        ${formatDate(
-                            task.date
-                        )}
-
-                        ${
-                            task.time
-                            ? `
-                                <br>
-                                at
-                                ${formatTime(
-                                    task.time
-                                )}
-                            `
-                            : ""
-                        }
+    }
 
 
-                        ${
-                            !task.completed
-                            ? `
-                                <br>
+    if (
+        currentFilter ===
+        "pending"
+    ) {
 
-                                <small
-                                    class="${status.className}"
-                                >
-                                    ${status.text}
-                                </small>
-                            `
-                            : ""
-                        }
+        return sorted.filter(
+            task =>
+                !task.completed
+        );
 
-                    </div>
+    }
 
 
-                    ${
-                        task.reminderTime
-                        ? `
-                            <div class="reminder-time">
+    if (
+        currentFilter ===
+        "completed"
+    ) {
 
-                                🔔 Remind me at
-                                ${formatTime(
-                                    task.reminderTime
-                                )}
+        return sorted.filter(
+            task =>
+                task.completed
+        );
 
-                            </div>
-                        `
-                        : ""
-                    }
+    }
 
 
-                    <div class="task-buttons">
-
-
-                        <button
-                            class="done-btn"
-                            type="button"
-                            onclick="completeTask('${task.id}')"
-                        >
-
-                            ${
-                                task.completed
-                                ? "Undo"
-                                : "Complete"
-                            }
-
-                        </button>
-
-
-                        <button
-                            class="delete-btn"
-                            type="button"
-                            onclick="deleteTask('${task.id}')"
-                        >
-                            Delete
-                        </button>
-
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            taskList.appendChild(
-                div
-            );
-
-        }
+    return sorted.filter(
+        task =>
+            task.type ===
+            currentFilter
     );
 
+}
 
-    updateStats();
+
+/* =====================================================
+   CREATE TASK CARD
+===================================================== */
+
+function createTaskCard(
+    task
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "task-card" +
+        (
+            task.completed
+            ? " completed"
+            : ""
+        );
+
+
+    const status =
+        getDeadlineStatus(
+            task
+        );
+
+
+    const reminderHTML =
+        task.reminderTime
+
+        ? `
+
+            <div class="task-meta">
+
+                🔔 Remind me at
+                <strong>
+                    ${formatTime(
+                        task.reminderTime
+                    )}
+                </strong>
+
+            </div>
+
+          `
+
+        : "";
+
+
+    div.innerHTML = `
+
+        <div class="task-main">
+
+            <div class="task-name">
+
+                ${escapeHtml(
+                    task.name
+                )}
+
+            </div>
+
+
+            <span class="task-type">
+
+                ${escapeHtml(
+                    task.type
+                )}
+
+            </span>
+
+
+            ${reminderHTML}
+
+        </div>
+
+
+        <div class="task-side">
+
+
+            <div class="due-date">
+
+                Due
+                ${formatDate(
+                    task.date
+                )}
+
+                ${
+                    task.time
+                    ? ` at ${formatTime(task.time)}`
+                    : ""
+                }
+
+            </div>
+
+
+            ${
+                !task.completed
+
+                ? `
+
+                    <div
+                        class="due-status
+                        ${status.className}"
+                    >
+                        ${status.text}
+                    </div>
+
+                  `
+
+                : ""
+            }
+
+
+            <div class="task-actions">
+
+                <button
+                    class="action-btn complete-btn"
+                    type="button"
+                    onclick="completeTask('${task.id}')"
+                >
+                    ${
+                        task.completed
+                        ? "Undo"
+                        : "Complete"
+                    }
+                </button>
+
+
+                <button
+                    class="action-btn delete-btn"
+                    type="button"
+                    onclick="deleteTask('${task.id}')"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    return div;
 
 }
 
@@ -2323,7 +4707,7 @@ function getDeadlineStatus(
                 "Overdue",
 
             className:
-                "reminder-today"
+                "status-red"
 
         };
 
@@ -2331,7 +4715,8 @@ function getDeadlineStatus(
 
 
     if (
-        hours <= 24
+        hours <=
+        24
     ) {
 
         return {
@@ -2340,7 +4725,7 @@ function getDeadlineStatus(
                 "Due within 24 hours",
 
             className:
-                "reminder-today"
+                "status-red"
 
         };
 
@@ -2348,7 +4733,8 @@ function getDeadlineStatus(
 
 
     if (
-        hours <= 48
+        hours <=
+        48
     ) {
 
         return {
@@ -2357,7 +4743,7 @@ function getDeadlineStatus(
                 "Due within 2 days",
 
             className:
-                "reminder-tomorrow"
+                "status-orange"
 
         };
 
@@ -2365,7 +4751,8 @@ function getDeadlineStatus(
 
 
     if (
-        hours <= 72
+        hours <=
+        72
     ) {
 
         return {
@@ -2374,7 +4761,7 @@ function getDeadlineStatus(
                 "Due within 3 days",
 
             className:
-                "reminder-soon"
+                "status-purple"
 
         };
 
@@ -2394,7 +4781,7 @@ function getDeadlineStatus(
             `Due in ${days} days`,
 
         className:
-            "reminder-soon"
+            "status-purple"
 
     };
 
@@ -2402,26 +4789,203 @@ function getDeadlineStatus(
 
 
 /* =====================================================
-   UPDATE REMINDERS
+   COMPLETE
 ===================================================== */
 
-function updateReminders() {
+function completeTask(
+    id
+) {
 
-
-    const now =
-        new Date();
-
-
-    const upcoming =
-        tasks
-
-        .filter(
+    const task =
+        tasks.find(
             task =>
-                !task.completed
-        )
+                String(task.id) ===
+                String(id)
+        );
 
-        .map(
+
+    if (
+        !task
+    ) {
+
+        return;
+
+    }
+
+
+    task.completed =
+        !task.completed;
+
+
+    removeReminderRecord(
+        task
+    );
+
+
+    saveTasks();
+
+
+    displayTasks();
+
+
+    showToast(
+        task.completed
+        ? "Task completed!"
+        : "Task moved back to pending."
+    );
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+function deleteTask(
+    id
+) {
+
+    const task =
+        tasks.find(
+            task =>
+                String(task.id) ===
+                String(id)
+        );
+
+
+    if (
+        !task
+    ) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            `Delete "${task.name}"?`
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    removeReminderRecord(
+        task
+    );
+
+
+    tasks =
+        tasks.filter(
+            task =>
+                String(task.id) !==
+                String(id)
+        );
+
+
+    saveTasks();
+
+
+    displayTasks();
+
+
+    showToast(
+        "Task deleted."
+    );
+
+}
+
+
+/* =====================================================
+   REMINDER RECORD
+===================================================== */
+
+function getReminderKey(
+    task
+) {
+
+    return (
+        "deadlineBuddyReminder_" +
+        task.id +
+        "_" +
+        task.date +
+        "_" +
+        task.reminderTime
+    );
+
+}
+
+
+function removeReminderRecord(
+    task
+) {
+
+    localStorage.removeItem(
+        getReminderKey(
+            task
+        )
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    const total =
+        tasks.length;
+
+
+    const completed =
+        tasks.filter(
+            task =>
+                task.completed
+        ).length;
+
+
+    const pending =
+        total -
+        completed;
+
+
+    const today =
+        todayStart();
+
+
+    const tomorrow =
+        new Date(
+            today
+        );
+
+
+    tomorrow.setDate(
+        tomorrow.getDate() +
+        1
+    );
+
+
+    const todayTasks =
+        tasks.filter(
             task => {
+
+                if (
+                    task.completed
+                ) {
+
+                    return false;
+
+                }
+
 
                 const deadline =
                     createDateTime(
@@ -2431,476 +4995,102 @@ function updateReminders() {
                     );
 
 
-                return {
-
-                    task:
-                        task,
-
-                    deadline:
-                        deadline
-
-                };
-
-            }
-        )
-
-        .filter(
-            item => {
-
-                const hours =
-                    (
-                        item.deadline -
-                        now
-                    ) /
-                    3600000;
-
-
                 return (
-                    hours <= 72 &&
-                    hours >= -24
+                    deadline >=
+                    today &&
+                    deadline <
+                    tomorrow
                 );
 
             }
-        )
+        ).length;
 
-        .sort(
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "pendingTasks"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "todayTasks"
+    ).textContent =
+        todayTasks;
+
+
+    /* PROGRESS */
+
+    const percent =
+        total === 0
+        ? 0
+        : Math.round(
             (
-                a,
-                b
-            ) =>
-                a.deadline -
-                b.deadline
+                completed /
+                total
+            ) * 100
         );
 
 
-    if (
-        upcoming.length === 0
-    ) {
-
-        reminderList.innerHTML = `
-
-            <p class="no-reminders">
-
-                No urgent deadlines.
-                You're on track! 🎉
-
-            </p>
-
-        `;
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        `${percent}%`;
 
 
-        return;
-
-    }
-
-
-    reminderList.innerHTML =
-        upcoming
-            .map(
-                item => {
-
-                    const status =
-                        getDeadlineStatus(
-                            item.task
-                        );
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        `${percent}%`;
 
 
-                    return `
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        total === 0
 
-                        <div
-                            class="reminder-item"
-                        >
+        ? "No tasks added yet."
 
-                            <strong>
-                                ${escapeHtml(
-                                    item.task.name
-                                )}
-                            </strong>
-
-                            <br>
+        : `${completed} of ${total} tasks completed.`;
 
 
-                            <span
-                                class="${status.className}"
-                            >
-                                ${status.text}
-                            </span>
+    /* TODAY */
+
+    document.getElementById(
+        "todayNumber"
+    ).textContent =
+        todayTasks;
 
 
-                            ·
+    document.getElementById(
+        "todayText"
+    ).textContent =
+        todayTasks === 0
 
+        ? "No tasks due today. You're on track!"
 
-                            ${escapeHtml(
-                                item.task.type
-                            )}
+        : todayTasks === 1
 
+            ? "You have 1 task due today."
 
-                            ${
-                                item.task.reminderTime
-
-                                ? `
-
-                                    <div
-                                        class="reminder-time"
-                                    >
-
-                                        🔔 Reminder:
-                                        ${formatDate(
-                                            item.task.date
-                                        )}
-
-                                        at
-
-                                        ${formatTime(
-                                            item.task.reminderTime
-                                        )}
-
-                                    </div>
-
-                                  `
-
-                                : `
-
-                                    <div
-                                        class="reminder-time"
-                                    >
-
-                                        No specific
-                                        reminder time set.
-
-                                    </div>
-
-                                  `
-                            }
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
+            : `You have ${todayTasks} tasks due today.`;
 
 }
 
 
 /* =====================================================
-   ENABLE NOTIFICATIONS
-===================================================== */
-
-async function enableNotifications() {
-
-
-    if (
-        !(
-            "Notification"
-            in window
-        )
-    ) {
-
-        alert(
-            "This browser does not support notifications."
-        );
-
-
-        updateNotificationStatus();
-
-
-        return;
-
-    }
-
-
-    try {
-
-
-        const permission =
-            await Notification.requestPermission();
-
-
-        updateNotificationStatus();
-
-
-        if (
-            permission ===
-            "granted"
-        ) {
-
-
-            localStorage.setItem(
-                "deadlineBuddyNotificationsEnabled",
-                "true"
-            );
-
-
-            alert(
-                "✅ Notifications are enabled!"
-            );
-
-
-            showTestNotification();
-
-
-            checkScheduledReminders();
-
-        }
-
-
-        else if (
-            permission ===
-            "denied"
-        ) {
-
-
-            localStorage.setItem(
-                "deadlineBuddyNotificationsEnabled",
-                "false"
-            );
-
-
-            alert(
-                "🚫 Notifications are blocked. Please enable them in your browser or device settings."
-            );
-
-        }
-
-
-        else {
-
-
-            localStorage.setItem(
-                "deadlineBuddyNotificationsEnabled",
-                "false"
-            );
-
-        }
-
-    }
-
-    catch (
-        error
-    ) {
-
-        console.error(
-            error
-        );
-
-
-        alert(
-            "Unable to enable notifications."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   NOTIFICATION STATUS
-===================================================== */
-
-function updateNotificationStatus() {
-
-
-    if (
-        !(
-            "Notification"
-            in window
-        )
-    ) {
-
-
-        notificationStatus.className =
-            "notification-status blocked";
-
-
-        notificationStatus.textContent =
-            "❌ Notifications Not Supported";
-
-
-        return;
-
-    }
-
-
-    if (
-        Notification.permission ===
-        "granted"
-    ) {
-
-
-        notificationStatus.className =
-            "notification-status enabled";
-
-
-        notificationStatus.textContent =
-            "🔔 Notifications Enabled";
-
-
-        return;
-
-    }
-
-
-    if (
-        Notification.permission ===
-        "denied"
-    ) {
-
-
-        notificationStatus.className =
-            "notification-status blocked";
-
-
-        notificationStatus.textContent =
-            "🚫 Notifications Blocked";
-
-
-        return;
-
-    }
-
-
-    notificationStatus.className =
-        "notification-status";
-
-
-    notificationStatus.textContent =
-        "🔕 Notifications Not Enabled";
-
-}
-
-
-/* =====================================================
-   DB ICON FOR NOTIFICATIONS
-===================================================== */
-
-function getDBIcon() {
-
-    const svg = `
-
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="192"
-            height="192"
-            viewBox="0 0 192 192"
-        >
-
-            <rect
-                width="192"
-                height="192"
-                rx="35"
-                fill="#5b4bdb"
-            />
-
-            <text
-                x="96"
-                y="116"
-                text-anchor="middle"
-                font-family="Arial, sans-serif"
-                font-size="58"
-                font-weight="bold"
-                letter-spacing="-4"
-                fill="white"
-            >
-                DB
-            </text>
-
-        </svg>
-
-    `;
-
-
-    return (
-        "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(
-            svg
-        )
-    );
-
-}
-
-
-/* =====================================================
-   TEST NOTIFICATION
-===================================================== */
-
-function showTestNotification() {
-
-
-    if (
-        Notification.permission !==
-        "granted"
-    ) {
-
-        return;
-
-    }
-
-
-    const options = {
-
-        body:
-            "Notifications are enabled! Deadline Buddy is ready to remind you.",
-
-        icon:
-            getDBIcon(),
-
-        badge:
-            getDBIcon(),
-
-        tag:
-            "deadline-buddy-test"
-
-    };
-
-
-    if (
-        "serviceWorker"
-        in navigator
-    ) {
-
-
-        navigator
-            .serviceWorker
-            .ready
-            .then(
-                registration => {
-
-                    registration.showNotification(
-                        "Deadline Buddy 🔔",
-                        options
-                    );
-
-                }
-            )
-            .catch(
-                () => {
-
-                    new Notification(
-                        "Deadline Buddy 🔔",
-                        options
-                    );
-
-                }
-            );
-
-    }
-
-    else {
-
-        new Notification(
-            "Deadline Buddy 🔔",
-            options
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SCHEDULED REMINDER CHECK
+   REMINDERS
 ===================================================== */
 
 async function checkScheduledReminders() {
@@ -3008,13 +5198,22 @@ async function checkScheduledReminders() {
                 message,
 
             icon:
-                getDBIcon(),
+                "icon.svg",
 
             badge:
-                getDBIcon(),
+                "icon.svg",
 
             tag:
-                `deadline-buddy-${task.id}`
+                `deadline-buddy-${task.id}`,
+
+            renotify:
+                true,
+
+            data:
+                {
+                    taskId:
+                        task.id
+                }
 
         };
 
@@ -3053,16 +5252,12 @@ async function checkScheduledReminders() {
 
         }
 
-        catch (
-            error
-        ) {
-
+        catch (error) {
 
             console.error(
-                "Notification error:",
+                "Reminder notification error:",
                 error
             );
-
 
             try {
 
@@ -3096,7 +5291,7 @@ async function checkScheduledReminders() {
 }
 
 
-/* CHECK EVERY 10 SECONDS */
+/* CHECK REMINDERS */
 
 setInterval(
     checkScheduledReminders,
@@ -3105,46 +5300,182 @@ setInterval(
 
 
 /* =====================================================
-   REMINDER KEY
+   NOTIFICATIONS
 ===================================================== */
 
-function getReminderKey(
-    task
-) {
+async function enableNotifications() {
 
-    return (
-        "deadlineBuddyReminder_" +
-        task.id +
-        "_" +
-        task.date +
-        "_" +
-        task.reminderTime
-    );
+
+    if (
+        !(
+            "Notification"
+            in window
+        )
+    ) {
+
+        showToast(
+            "Notifications are not supported here."
+        );
+
+        updateNotificationStatus();
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const permission =
+            await Notification.requestPermission();
+
+
+        updateNotificationStatus();
+
+
+        if (
+            permission ===
+            "granted"
+        ) {
+
+
+            localStorage.setItem(
+                "deadlineBuddyNotificationsEnabled",
+                "true"
+            );
+
+
+            showToast(
+                "Notifications enabled!"
+            );
+
+
+            showNotificationPreview();
+
+
+            checkScheduledReminders();
+
+        }
+
+
+        else if (
+            permission ===
+            "denied"
+        ) {
+
+
+            localStorage.setItem(
+                "deadlineBuddyNotificationsEnabled",
+                "false"
+            );
+
+
+            showToast(
+                "Notifications are blocked."
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        showToast(
+            "Unable to enable notifications."
+        );
+
+    }
 
 }
 
 
-/* =====================================================
-   COMPLETE TASK
-===================================================== */
-
-function completeTask(
-    id
-) {
-
-
-    const task =
-        tasks.find(
-            task =>
-                String(
-                    task.id
-                ) ===
-                String(id)
-        );
+function updateNotificationStatus() {
 
 
     if (
-        !task
+        !(
+            "Notification"
+            in window
+        )
+    ) {
+
+
+        notificationStatus.className =
+            "notification-status blocked";
+
+
+        notificationStatus.textContent =
+            "❌ Not Supported";
+
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission ===
+        "granted"
+    ) {
+
+
+        notificationStatus.className =
+            "notification-status enabled";
+
+
+        notificationStatus.textContent =
+            "🔔 Enabled";
+
+
+        return;
+
+    }
+
+
+    if (
+        Notification.permission ===
+        "denied"
+    ) {
+
+
+        notificationStatus.className =
+            "notification-status blocked";
+
+
+        notificationStatus.textContent =
+            "🚫 Blocked";
+
+
+        return;
+
+    }
+
+
+    notificationStatus.className =
+        "notification-status";
+
+
+    notificationStatus.textContent =
+        "🔕 Not Enabled";
+
+}
+
+
+/* TEST NOTIFICATION */
+
+function showNotificationPreview() {
+
+
+    if (
+        !(
+            "Notification"
+            in window
+        )
     ) {
 
         return;
@@ -3152,102 +5483,132 @@ function completeTask(
     }
 
 
-    task.completed =
-        !task.completed;
-
-
-    removeReminderRecord(
-        task
-    );
-
-
-    saveTasks();
-
-
-    displayTasks();
-
-
-    updateReminders();
-
-}
-
-
-/* =====================================================
-   DELETE TASK
-===================================================== */
-
-function deleteTask(
-    id
-) {
-
-
-    const task =
-        tasks.find(
-            task =>
-                String(
-                    task.id
-                ) ===
-                String(id)
-        );
-
-
     if (
-        task
+        Notification.permission !==
+        "granted"
     ) {
 
-        removeReminderRecord(
-            task
-        );
+        return;
 
     }
 
 
-    tasks =
-        tasks.filter(
-            task =>
-                String(
-                    task.id
-                ) !==
-                String(id)
+    const options = {
+
+        body:
+            "Notifications are enabled. Deadline Buddy is ready to remind you.",
+
+        icon:
+            "icon.svg",
+
+        badge:
+            "icon.svg",
+
+        tag:
+            "deadline-buddy-test"
+
+    };
+
+
+    if (
+        "serviceWorker"
+        in navigator
+    ) {
+
+
+        navigator
+            .serviceWorker
+            .ready
+            .then(
+                registration => {
+
+                    registration
+                        .showNotification(
+                            "Deadline Buddy 🔔",
+                            options
+                        );
+
+                }
+            )
+            .catch(
+                () => {
+
+                    new Notification(
+                        "Deadline Buddy 🔔",
+                        options
+                    );
+
+                }
+            );
+
+    }
+
+    else {
+
+        new Notification(
+            "Deadline Buddy 🔔",
+            options
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer =
+    null;
+
+
+function showToast(
+    message
+) {
+
+    const toast =
+        document.getElementById(
+            "toast"
         );
 
 
-    saveTasks();
+    toast.textContent =
+        message;
 
 
-    displayTasks();
-
-
-    updateReminders();
-
-}
-
-
-/* =====================================================
-   REMOVE REMINDER
-===================================================== */
-
-function removeReminderRecord(
-    task
-) {
-
-    localStorage.removeItem(
-        getReminderKey(
-            task
-        )
+    toast.classList.add(
+        "show"
     );
 
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2600
+        );
+
 }
 
 
 /* =====================================================
-   FORMAT DATE
+   FORMAT
 ===================================================== */
 
 function formatDate(
     date
 ) {
-
 
     const d =
         new Date(
@@ -3285,14 +5646,9 @@ function formatDate(
 }
 
 
-/* =====================================================
-   FORMAT TIME
-===================================================== */
-
 function formatTime(
     time
 ) {
-
 
     if (
         !time
@@ -3303,20 +5659,11 @@ function formatTime(
     }
 
 
-    const parts =
+    const [
+        hours,
+        minutes
+    ] =
         time.split(":");
-
-
-    const hours =
-        Number(
-            parts[0]
-        );
-
-
-    const minutes =
-        Number(
-            parts[1]
-        );
 
 
     const d =
@@ -3324,8 +5671,8 @@ function formatTime(
 
 
     d.setHours(
-        hours,
-        minutes,
+        Number(hours),
+        Number(minutes),
         0,
         0
     );
@@ -3348,107 +5695,26 @@ function formatTime(
 
 
 /* =====================================================
-   STATISTICS
-===================================================== */
-
-function updateStats() {
-
-
-    const total =
-        tasks.length;
-
-
-    const completed =
-        tasks.filter(
-            task =>
-                task.completed
-        ).length;
-
-
-    const pending =
-        total -
-        completed;
-
-
-    document.getElementById(
-        "totalTasks"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "pendingTasks"
-    ).textContent =
-        pending;
-
-
-    document.getElementById(
-        "completedTasks"
-    ).textContent =
-        completed;
-
-}
-
-
-/* =====================================================
-   SAVE TASKS
-===================================================== */
-
-function saveTasks() {
-
-
-    try {
-
-        localStorage.setItem(
-            "deadlineBuddyTasks",
-            JSON.stringify(
-                tasks
-            )
-        );
-
-    }
-
-    catch (
-        error
-    ) {
-
-        console.error(
-            "Unable to save tasks:",
-            error
-        );
-
-
-        alert(
-            "Your browser could not save this task."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   ESCAPE USER INPUT
+   ESCAPE TEXT
 ===================================================== */
 
 function escapeHtml(
     text
 ) {
 
-
-    const element =
+    const div =
         document.createElement(
             "div"
         );
 
 
-    element.textContent =
+    div.textContent =
         String(
             text
         );
 
 
-    return element.innerHTML;
+    return div.innerHTML;
 
 }
 
@@ -3462,11 +5728,9 @@ if (
     in navigator
 ) {
 
-
     window.addEventListener(
         "load",
         () => {
-
 
             navigator
                 .serviceWorker
@@ -3477,7 +5741,7 @@ if (
                     registration => {
 
                         console.log(
-                            "Deadline Buddy service worker registered.",
+                            "Deadline Buddy service worker ready:",
                             registration.scope
                         );
 
@@ -3506,29 +5770,48 @@ if (
 
 displayTasks();
 
-updateReminders();
+updateDashboard();
 
 updateNotificationStatus();
 
 initializeInstallButton();
 
 
-/* REFRESH DEADLINE DISPLAY */
+/* REFRESH UI */
 
 setInterval(
     () => {
 
         displayTasks();
 
-        updateReminders();
+        updateNotificationStatus();
+
+        checkScheduledReminders();
 
     },
     60000
 );
 
 
-</script>
+/* ENTER KEY */
 
+taskName.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            addTask();
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 
