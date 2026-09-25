@@ -1,1 +1,113 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+>
 
+    <defs>
+
+        <linearGradient
+            id="bg"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+        >
+
+            <stop
+                offset="0%"
+                stop-color="#6d5ce7"
+            />
+
+            <stop
+                offset="100%"
+                stop-color="#4b3bc7"
+            />
+
+        </linearGradient>
+
+        <filter
+            id="shadow"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+        >
+
+            <feDropShadow
+                dx="0"
+                dy="12"
+                stdDeviation="10"
+                flood-opacity="0.18"
+            />
+
+        </filter>
+
+    </defs>
+
+
+    <rect
+        width="512"
+        height="512"
+        rx="115"
+        fill="url(#bg)"
+    />
+
+
+    <text
+        x="256"
+        y="335"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="230"
+        font-weight="900"
+        letter-spacing="-20"
+        fill="white"
+        filter="url(#shadow)"
+    >
+        DB
+    </text>
+
+
+    <circle
+        cx="374"
+        cy="356"
+        r="48"
+        fill="white"
+    />
+
+
+    <path
+        d="M350 356 L368 374 L402 337"
+        fill="none"
+        stroke="#5b4bdb"
+        stroke-width="16"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+
+    <path
+        d="M362 110 L375 74"
+        stroke="#ffffff"
+        stroke-width="15"
+        stroke-linecap="round"
+        opacity="0.85"
+    />
+
+    <path
+        d="M408 125 L435 96"
+        stroke="#ffffff"
+        stroke-width="15"
+        stroke-linecap="round"
+        opacity="0.85"
+    />
+
+    <path
+        d="M437 161 L473 150"
+        stroke="#ffffff"
+        stroke-width="15"
+        stroke-linecap="round"
+        opacity="0.85"
+    />
+
+</svg>
