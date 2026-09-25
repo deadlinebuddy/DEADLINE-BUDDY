@@ -3,56 +3,6 @@
     "name": "Deadline Buddy",
     "short_name": "Deadline Buddy",
 
-    "description": "A student-focused app for organizing tasks, deadlines, and reminders.",
-
-    "start_url": "./",
-
-    "scope": "./",
-
-    "display": "standalone",
-
-    "background_color": "#f5f6fb",
-
-    "theme_color": "#5b4bdb",
-
-    "orientation": "portrait-primary",
-
-    "prefer_related_applications": false,
-
-    "icons": [
-        {
-            "src": "icon.svg",
-            "sizes": "any",
-            "type": "image/svg+xml",
-            "purpose": "any maskable"
-        }
-    ]
-}
-{
-    "name": "Deadline Buddy",
-    "short_name": "Deadline Buddy",
-    "description": "A student deadline and reminder app.",
-    "start_url": "./",
-    "scope": "./",
-    "display": "standalone",
-    "orientation": "portrait",
-    "background_color": "#f5f6fb",
-    "theme_color": "#5b4bdb",
-
-    "icons": [
-        {
-            "src": "icon.svg",
-            "sizes": "any",
-            "type": "image/svg+xml",
-            "purpose": "any maskable"
-        }
-    ]
-}
-{
-    "id": "./",
-    "name": "Deadline Buddy",
-    "short_name": "Deadline Buddy",
-
     "description": "A student-friendly app for managing school tasks, deadlines, and reminders.",
 
     "start_url": "./",
@@ -75,7 +25,7 @@
     "icons": [
         {
             "src": "icon.svg",
-            "sizes": "any",
+            "sizes": "192x192 512x512",
             "type": "image/svg+xml",
             "purpose": "any maskable"
         }
