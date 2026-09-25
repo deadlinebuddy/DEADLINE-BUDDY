@@ -54,6 +54,7 @@
             color: #5b4bdb;
         }
 
+
         /* HERO */
 
         .hero {
@@ -96,6 +97,7 @@
             background: #4435b5;
         }
 
+
         /* DASHBOARD */
 
         .dashboard {
@@ -115,6 +117,7 @@
             color: #777;
             margin-top: 8px;
         }
+
 
         /* STAT CARDS */
 
@@ -143,6 +146,7 @@
             color: #5b4bdb;
         }
 
+
         /* ADD TASK */
 
         .add-task {
@@ -165,8 +169,9 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.3fr 1fr;
             gap: 12px;
+            align-items: end;
         }
 
         input,
@@ -182,6 +187,26 @@
         select:focus {
             border-color: #5b4bdb;
         }
+
+
+        /* REMINDER TIME */
+
+        .reminder-input {
+            width: 100%;
+        }
+
+        .reminder-input label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .reminder-input input {
+            width: 100%;
+        }
+
 
         /* REMINDERS */
 
@@ -262,6 +287,7 @@
             font-size: 14px;
         }
 
+
         /* TASKS */
 
         .tasks {
@@ -325,6 +351,7 @@
             color: #d33;
         }
 
+
         /* EMPTY */
 
         .empty {
@@ -334,6 +361,7 @@
             background: white;
             border-radius: 12px;
         }
+
 
         /* FOOTER */
 
@@ -350,12 +378,13 @@
             margin-top: 8px;
         }
 
+
         /* MOBILE */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
 
             .form-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
             }
 
         }
@@ -525,10 +554,13 @@
         </h2>
 
         <p>
-            Set your deadline and the exact time you want to receive your reminder.
+            Enter your task, deadline, and the exact time you want to get reminded.
         </p>
 
         <div class="form-grid">
+
+
+            <!-- TASK NAME -->
 
             <input
                 type="text"
@@ -536,6 +568,8 @@
                 placeholder="Task name"
             >
 
+
+            <!-- TASK TYPE -->
 
             <select id="taskType">
 
@@ -582,12 +616,21 @@
 
             <!-- REMINDER TIME -->
 
-            <input
-                type="time"
-                id="reminderTime"
-                title="Reminder time"
-            >
+            <div class="reminder-input">
 
+                <label for="reminderTime">
+                    🔔 Set time to get reminded
+                </label>
+
+                <input
+                    type="time"
+                    id="reminderTime"
+                >
+
+            </div>
+
+
+            <!-- ADD BUTTON -->
 
             <button
                 class="btn"
@@ -595,6 +638,7 @@
             >
                 Add Task
             </button>
+
 
         </div>
 
@@ -611,6 +655,9 @@
                 🔔 Deadline Reminders
             </h2>
 
+
+            <!-- NOTIFICATION STATUS -->
+
             <div
                 id="notificationStatus"
                 class="notification-status"
@@ -620,6 +667,9 @@
 
             <br>
 
+
+            <!-- ENABLE BUTTON -->
+
             <button
                 class="btn"
                 onclick="enableNotifications()"
@@ -627,13 +677,18 @@
                 Enable Browser Notifications
             </button>
 
+
+            <!-- REMINDER LIST -->
+
             <div
                 id="reminderList"
                 style="margin-top:20px;"
             >
+
                 <p class="no-reminders">
                     No upcoming reminders.
                 </p>
+
             </div>
 
         </div>
@@ -718,64 +773,95 @@ function addTask() {
     const name =
         document.getElementById("taskName").value.trim();
 
+
     const type =
         document.getElementById("taskType").value;
+
 
     const date =
         document.getElementById("taskDate").value;
 
+
     const time =
         document.getElementById("taskTime").value;
+
 
     const reminderTime =
         document.getElementById("reminderTime").value;
 
 
+    /* CHECK REQUIRED FIELDS */
+
     if (name === "" || date === "") {
 
-        alert("Please enter a task and deadline.");
+        alert(
+            "Please enter a task and deadline."
+        );
 
         return;
+
     }
 
 
-    /* CHECK WHETHER REMINDER TIME WAS ENTERED */
+    /* CHECK REMINDER TIME */
 
-    if (reminderTime !== "" && time !== "") {
+    if (
+        reminderTime !== "" &&
+        time !== ""
+    ) {
 
         const deadlineDateTime =
-            new Date(`${date}T${time}:00`);
+            new Date(
+                `${date}T${time}:00`
+            );
+
 
         const reminderDateTime =
-            new Date(`${date}T${reminderTime}:00`);
+            new Date(
+                `${date}T${reminderTime}:00`
+            );
 
-        if (reminderDateTime >= deadlineDateTime) {
+
+        if (
+            reminderDateTime >=
+            deadlineDateTime
+        ) {
 
             alert(
                 "Your reminder time should be earlier than the deadline time."
             );
 
             return;
+
         }
 
     }
 
 
+    /* CREATE TASK */
+
     const task = {
 
-        id: Date.now(),
+        id:
+            Date.now(),
 
-        name: name,
+        name:
+            name,
 
-        type: type,
+        type:
+            type,
 
-        date: date,
+        date:
+            date,
 
-        time: time,
+        time:
+            time,
 
-        reminderTime: reminderTime,
+        reminderTime:
+            reminderTime,
 
-        completed: false
+        completed:
+            false
 
     };
 
@@ -790,13 +876,26 @@ function addTask() {
     updateReminders();
 
 
-    document.getElementById("taskName").value = "";
+    /* CLEAR FORM */
 
-    document.getElementById("taskDate").value = "";
+    document.getElementById(
+        "taskName"
+    ).value = "";
 
-    document.getElementById("taskTime").value = "";
 
-    document.getElementById("reminderTime").value = "";
+    document.getElementById(
+        "taskDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "taskTime"
+    ).value = "";
+
+
+    document.getElementById(
+        "reminderTime"
+    ).value = "";
 
 }
 
@@ -806,12 +905,17 @@ function addTask() {
 function displayTasks() {
 
     const list =
-        document.getElementById("taskList");
+        document.getElementById(
+            "taskList"
+        );
+
 
     list.innerHTML = "";
 
 
-    if (tasks.length === 0) {
+    if (
+        tasks.length === 0
+    ) {
 
         list.innerHTML = `
 
@@ -829,15 +933,17 @@ function displayTasks() {
 
         `;
 
+
         updateStats();
 
         updateReminders();
 
         return;
+
     }
 
 
-    /* SORT TASKS BY DEADLINE */
+    /* SORT BY DEADLINE */
 
     tasks.sort(
         (a, b) => {
@@ -847,10 +953,12 @@ function displayTasks() {
                     `${a.date}T${a.time || "23:59"}:00`
                 );
 
+
             const dateB =
                 new Date(
                     `${b.date}T${b.time || "23:59"}:00`
                 );
+
 
             return dateA - dateB;
 
@@ -858,112 +966,143 @@ function displayTasks() {
     );
 
 
-    tasks.forEach(task => {
+    /* CREATE TASK CARDS */
+
+    tasks.forEach(
+        task => {
 
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
 
-        div.className =
-            "task " +
-            (task.completed ? "completed" : "");
+            div.className =
+                "task " +
+                (
+                    task.completed
+                    ? "completed"
+                    : ""
+                );
 
 
-        const status =
-            getDeadlineStatus(
-                task.date,
-                task.time
-            );
+            const status =
+                getDeadlineStatus(
+                    task.date,
+                    task.time
+                );
 
 
-        div.innerHTML = `
+            div.innerHTML = `
 
-            <div class="task-info">
+                <div class="task-info">
 
-                <h3>
-                    ${escapeHtml(task.name)}
-                </h3>
+                    <h3>
+                        ${escapeHtml(
+                            task.name
+                        )}
+                    </h3>
 
-                <p>
-                    ${escapeHtml(task.type)}
-                </p>
-
-            </div>
-
-
-            <div class="task-right">
-
-                <div class="deadline">
-
-                    Due:
-                    ${formatDate(task.date)}
-
-                    ${
-                        task.time
-                        ? `<br>at ${formatTime(task.time)}`
-                        : ""
-                    }
-
-                    ${
-                        !task.completed
-                        ? `<br>
-                           <small class="${status.className}">
-                               ${status.text}
-                           </small>`
-                        : ""
-                    }
+                    <p>
+                        ${escapeHtml(
+                            task.type
+                        )}
+                    </p>
 
                 </div>
 
 
-                ${
-                    task.reminderTime
-                    ? `
-                        <div class="reminder-time">
-                            🔔 Remind me at
-                            ${formatTime(task.reminderTime)}
-                        </div>
-                    `
-                    : ""
-                }
+                <div class="task-right">
 
+                    <div class="deadline">
 
-                <div class="task-buttons">
-
-                    <button
-                        class="done-btn"
-                        onclick="completeTask(${task.id})"
-                    >
+                        Due:
+                        ${formatDate(
+                            task.date
+                        )}
 
                         ${
-                            task.completed
-                            ? "Undo"
-                            : "Complete"
+                            task.time
+                            ? `
+                                <br>
+                                at
+                                ${formatTime(
+                                    task.time
+                                )}
+                              `
+                            : ""
                         }
 
-                    </button>
+
+                        ${
+                            !task.completed
+                            ? `
+                                <br>
+                                <small
+                                    class="${status.className}"
+                                >
+                                    ${status.text}
+                                </small>
+                              `
+                            : ""
+                        }
+
+                    </div>
 
 
-                    <button
-                        class="delete-btn"
-                        onclick="deleteTask(${task.id})"
-                    >
+                    ${
+                        task.reminderTime
+                        ? `
+                            <div class="reminder-time">
 
-                        Delete
+                                🔔 Remind me at
+                                ${formatTime(
+                                    task.reminderTime
+                                )}
 
-                    </button>
+                            </div>
+                          `
+                        : ""
+                    }
+
+
+                    <div class="task-buttons">
+
+                        <button
+                            class="done-btn"
+                            onclick="completeTask(${task.id})"
+                        >
+
+                            ${
+                                task.completed
+                                ? "Undo"
+                                : "Complete"
+                            }
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteTask(${task.id})"
+                        >
+
+                            Delete
+
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-        `;
+            `;
 
 
-        list.appendChild(div);
+            list.appendChild(div);
 
-    });
+        }
+    );
 
 
     updateStats();
@@ -973,9 +1112,12 @@ function displayTasks() {
 }
 
 
-/* GET DEADLINE STATUS */
+/* DEADLINE STATUS */
 
-function getDeadlineStatus(date, time = "") {
+function getDeadlineStatus(
+    date,
+    time = ""
+) {
 
     const now =
         new Date();
@@ -988,59 +1130,77 @@ function getDeadlineStatus(date, time = "") {
 
 
     const difference =
-        dueDate.getTime() - now.getTime();
+        dueDate.getTime() -
+        now.getTime();
 
 
     const hours =
-        difference / 3600000;
+        difference /
+        3600000;
 
 
-    if (difference < 0) {
+    if (
+        difference < 0
+    ) {
 
         return {
 
-            text: "Overdue",
+            text:
+                "Overdue",
 
-            className: "reminder-today"
+            className:
+                "reminder-today"
 
         };
 
     }
 
 
-    if (hours <= 24) {
+    if (
+        hours <= 24
+    ) {
 
         return {
 
-            text: "Due within 24 hours",
+            text:
+                "Due within 24 hours",
 
-            className: "reminder-today"
+            className:
+                "reminder-today"
 
         };
 
     }
 
 
-    if (hours <= 48) {
+    if (
+        hours <= 48
+    ) {
 
         return {
 
-            text: "Due tomorrow",
+            text:
+                "Due tomorrow",
 
-            className: "reminder-tomorrow"
+            className:
+                "reminder-tomorrow"
 
         };
 
     }
 
 
-    if (hours <= 72) {
+    if (
+        hours <= 72
+    ) {
 
         return {
 
-            text: "Due within 3 days",
+            text:
+                "Due within 3 days",
 
-            className: "reminder-soon"
+            className:
+                "reminder-soon"
 
         };
 
@@ -1048,7 +1208,9 @@ function getDeadlineStatus(date, time = "") {
 
 
     const days =
-        Math.ceil(hours / 24);
+        Math.ceil(
+            hours / 24
+        );
 
 
     return {
@@ -1064,12 +1226,14 @@ function getDeadlineStatus(date, time = "") {
 }
 
 
-/* UPDATE REMINDER PANEL */
+/* UPDATE REMINDERS */
 
 function updateReminders() {
 
     const reminderList =
-        document.getElementById("reminderList");
+        document.getElementById(
+            "reminderList"
+        );
 
 
     const now =
@@ -1084,129 +1248,156 @@ function updateReminders() {
                 !task.completed
         )
 
-        .map(task => {
+        .map(
+            task => {
 
-            const reminderDate =
-                task.reminderTime
-
-                ? new Date(
-                    `${task.date}T${task.reminderTime}:00`
-                )
-
-                : null;
+                const deadlineDate =
+                    new Date(
+                        `${task.date}T${task.time || "23:59"}:00`
+                    );
 
 
-            const deadlineDate =
-                new Date(
-                    `${task.date}T${task.time || "23:59"}:00`
+                return {
+
+                    task:
+                        task,
+
+                    deadlineDate:
+                        deadlineDate
+
+                };
+
+            }
+        )
+
+        .filter(
+            item => {
+
+                const hours =
+                    (
+                        item.deadlineDate -
+                        now
+                    ) / 3600000;
+
+
+                return (
+                    hours <= 72 &&
+                    hours >= -24
                 );
 
-
-            return {
-
-                task: task,
-
-                reminderDate: reminderDate,
-
-                deadlineDate: deadlineDate
-
-            };
-
-        })
-
-        .filter(item => {
-
-            const deadlineHours =
-                (
-                    item.deadlineDate - now
-                ) / 3600000;
-
-
-            return deadlineHours <= 72;
-
-        })
+            }
+        )
 
         .sort(
             (a, b) =>
-                a.deadlineDate - b.deadlineDate
+                a.deadlineDate -
+                b.deadlineDate
         );
 
 
-    if (upcoming.length === 0) {
+    if (
+        upcoming.length === 0
+    ) {
 
         reminderList.innerHTML = `
 
             <p class="no-reminders">
-                No urgent deadlines. You're on track! 🎉
+
+                No urgent deadlines.
+                You're on track! 🎉
+
             </p>
 
         `;
 
         return;
+
     }
 
 
     reminderList.innerHTML =
+        upcoming
+        .map(
+            item => {
 
-        upcoming.map(item => {
-
-            const status =
-                getDeadlineStatus(
-                    item.task.date,
-                    item.task.time
-                );
+                const status =
+                    getDeadlineStatus(
+                        item.task.date,
+                        item.task.time
+                    );
 
 
-            return `
+                return `
 
-                <div class="reminder-item">
+                    <div class="reminder-item">
 
-                    <strong>
-                        ${escapeHtml(item.task.name)}
-                    </strong>
+                        <strong>
+                            ${escapeHtml(
+                                item.task.name
+                            )}
+                        </strong>
 
-                    <br>
+                        <br>
 
-                    <span
-                        class="${status.className}"
-                    >
-                        ${status.text}
-                    </span>
+                        <span
+                            class="${status.className}"
+                        >
+                            ${status.text}
+                        </span>
 
-                    ·
-                    ${escapeHtml(item.task.type)}
+                        ·
 
-                    ${
-                        item.task.reminderTime
-                        ? `
-                            <div class="reminder-time">
-                                🔔 Reminder:
-                                ${formatDate(item.task.date)}
-                                at
-                                ${formatTime(item.task.reminderTime)}
-                            </div>
-                        `
-                        : `
-                            <div class="reminder-time">
-                                No specific reminder time set.
-                            </div>
-                        `
-                    }
+                        ${escapeHtml(
+                            item.task.type
+                        )}
 
-                </div>
 
-            `;
+                        ${
+                            item.task.reminderTime
+                            ? `
+                                <div class="reminder-time">
 
-        }).join("");
+                                    🔔 Reminder:
+                                    ${formatDate(
+                                        item.task.date
+                                    )}
+
+                                    at
+
+                                    ${formatTime(
+                                        item.task.reminderTime
+                                    )}
+
+                                </div>
+                              `
+                            : `
+                                <div class="reminder-time">
+
+                                    No specific
+                                    reminder time set.
+
+                                </div>
+                              `
+                        }
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
 
 }
 
 
-/* ENABLE BROWSER NOTIFICATIONS */
+/* ENABLE NOTIFICATIONS */
 
 function enableNotifications() {
 
-    if (!("Notification" in window)) {
+    if (
+        !("Notification" in window)
+    ) {
 
         alert(
             "Your browser does not support notifications."
@@ -1215,61 +1406,66 @@ function enableNotifications() {
         updateNotificationStatus();
 
         return;
+
     }
 
 
     Notification.requestPermission()
 
-        .then(permission => {
+        .then(
+            permission => {
 
-            updateNotificationStatus();
-
-
-            if (permission === "granted") {
-
-                localStorage.setItem(
-                    "deadlineBuddyNotificationsEnabled",
-                    "true"
-                );
+                updateNotificationStatus();
 
 
-                alert(
-                    "✅ Deadline notifications are enabled!"
-                );
+                if (
+                    permission ===
+                    "granted"
+                ) {
+
+                    localStorage.setItem(
+                        "deadlineBuddyNotificationsEnabled",
+                        "true"
+                    );
 
 
-                checkScheduledReminders();
+                    alert(
+                        "✅ Deadline notifications are enabled!"
+                    );
+
+                }
+
+                else {
+
+                    localStorage.setItem(
+                        "deadlineBuddyNotificationsEnabled",
+                        "false"
+                    );
+
+
+                    alert(
+                        "Notifications were not allowed. You can still use the reminder system inside Deadline Buddy."
+                    );
+
+                }
 
             }
+        )
 
-            else {
-
-                localStorage.setItem(
-                    "deadlineBuddyNotificationsEnabled",
-                    "false"
-                );
-
+        .catch(
+            () => {
 
                 alert(
-                    "Notifications were not allowed. You can still use the reminder system inside Deadline Buddy."
+                    "Something went wrong while enabling notifications."
                 );
 
             }
-
-        })
-
-        .catch(() => {
-
-            alert(
-                "Something went wrong while enabling notifications."
-            );
-
-        });
+        );
 
 }
 
 
-/* SHOW NOTIFICATION STATUS */
+/* UPDATE NOTIFICATION STATUS */
 
 function updateNotificationStatus() {
 
@@ -1279,7 +1475,9 @@ function updateNotificationStatus() {
         );
 
 
-    if (!("Notification" in window)) {
+    if (
+        !("Notification" in window)
+    ) {
 
         status.className =
             "notification-status blocked";
@@ -1288,6 +1486,7 @@ function updateNotificationStatus() {
             "❌ Browser Notifications Not Supported";
 
         return;
+
     }
 
 
@@ -1303,6 +1502,7 @@ function updateNotificationStatus() {
             "🔔 Notifications Enabled";
 
         return;
+
     }
 
 
@@ -1318,6 +1518,7 @@ function updateNotificationStatus() {
             "🚫 Notifications Blocked";
 
         return;
+
     }
 
 
@@ -1336,7 +1537,8 @@ function checkScheduledReminders() {
 
     if (
         !("Notification" in window) ||
-        Notification.permission !== "granted"
+        Notification.permission !==
+        "granted"
     ) {
 
         return;
@@ -1356,69 +1558,73 @@ function checkScheduledReminders() {
                 task.reminderTime
         )
 
-        .forEach(task => {
+        .forEach(
+            task => {
 
 
-            const reminderDate =
-                new Date(
-                    `${task.date}T${task.reminderTime}:00`
-                );
-
-
-            if (
-                now >= reminderDate
-            ) {
-
-
-                const notificationKey =
-                    `deadlineBuddyNotification_${task.id}_${task.date}_${task.reminderTime}`;
-
-
-                const alreadyShown =
-                    localStorage.getItem(
-                        notificationKey
+                const reminderDate =
+                    new Date(
+                        `${task.date}T${task.reminderTime}:00`
                     );
 
 
                 if (
-                    alreadyShown !== "shown"
+                    now >=
+                    reminderDate
                 ) {
 
 
-                    new Notification(
-                        "Deadline Buddy 🔔",
-                        {
-
-                            body:
-                                `${task.name} is due ${
-                                    task.time
-                                    ? `at ${formatTime(task.time)}`
-                                    : "today"
-                                }.`,
+                    const notificationKey =
+                        `deadlineBuddyNotification_${task.id}_${task.date}_${task.reminderTime}`;
 
 
-                            tag:
-                                `deadline-buddy-${task.id}`
+                    const alreadyShown =
+                        localStorage.getItem(
+                            notificationKey
+                        );
 
-                        }
-                    );
 
-
-                    localStorage.setItem(
-                        notificationKey,
+                    if (
+                        alreadyShown !==
                         "shown"
-                    );
+                    ) {
+
+
+                        new Notification(
+                            "Deadline Buddy 🔔",
+                            {
+
+                                body:
+                                    `${task.name} is due ${
+                                        task.time
+                                        ? `at ${formatTime(task.time)}`
+                                        : "today"
+                                    }.`,
+
+
+                                tag:
+                                    `deadline-buddy-${task.id}`
+
+                            }
+                        );
+
+
+                        localStorage.setItem(
+                            notificationKey,
+                            "shown"
+                        );
+
+                    }
 
                 }
 
             }
-
-        });
+        );
 
 }
 
 
-/* CHECK REMINDERS EVERY 10 SECONDS */
+/* CHECK EVERY 10 SECONDS */
 
 setInterval(
     checkScheduledReminders,
@@ -1437,7 +1643,9 @@ function completeTask(id) {
         );
 
 
-    if (task) {
+    if (
+        task
+    ) {
 
         task.completed =
             !task.completed;
@@ -1480,16 +1688,24 @@ function formatDate(date) {
 
     const d =
         new Date(
-            date + "T00:00:00"
+            date +
+            "T00:00:00"
         );
 
 
     return d.toLocaleDateString(
         "en-US",
         {
-            month: "short",
-            day: "numeric",
-            year: "numeric"
+
+            month:
+                "short",
+
+            day:
+                "numeric",
+
+            year:
+                "numeric"
+
         }
     );
 
@@ -1500,7 +1716,9 @@ function formatDate(date) {
 
 function formatTime(time) {
 
-    if (!time) {
+    if (
+        !time
+    ) {
 
         return "";
 
@@ -1527,8 +1745,13 @@ function formatTime(time) {
     return d.toLocaleTimeString(
         "en-US",
         {
-            hour: "numeric",
-            minute: "2-digit"
+
+            hour:
+                "numeric",
+
+            minute:
+                "2-digit"
+
         }
     );
 
@@ -1551,7 +1774,8 @@ function updateStats() {
 
 
     const pending =
-        total - completed;
+        total -
+        completed;
 
 
     document.getElementById(
@@ -1589,12 +1813,14 @@ function saveTasks() {
 }
 
 
-/* ESCAPE USER TEXT */
+/* PROTECT USER INPUT */
 
 function escapeHtml(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     div.textContent =
